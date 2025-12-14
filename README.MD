@@ -71,8 +71,9 @@ Every experiment is designed to be:
 * **Backend:** Python 3.10+ with FastAPI
 * **Data Storage:** Local JSON/SQLite only (prototypes)
 * **Image Generation:** Gemini Image API or Python (matplotlib, Pillow)
-* **Visual Output:** PNG/SVG/HTML for screenshots
-* **UI:** Optional (you do *not* need to build a frontend)
+* **Visual Output:** HTML templates with Jinja2 (mobile-first, app-like frames)
+* **UI Framework:** Simple HTML/CSS (iOS-inspired cards, no JavaScript required)
+* **Preview:** Browser-based (screenshot-ready)
 
 ---
 
@@ -184,6 +185,197 @@ docker-compose up --build
 * Gemini API: Check current limits at [Google AI Studio](https://aistudio.google.com)
 * Recommended: Implement basic rate limiting in production
 * For prototypes: Sequential requests are fine
+
+---
+
+# 📱 Visual Output Strategy
+
+## Philosophy: Browser-Based App Frames
+
+Each prototype produces **user-facing HTML output** that renders as a mobile app mockup in the browser. No frontend framework needed—just clean HTML/CSS templates.
+
+## Implementation Approach
+
+### 1. FastAPI + Jinja2 Templates
+
+Each experiment endpoint returns rendered HTML:
+
+```python
+from fastapi import FastAPI
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
+@app.post("/generate", response_class=HTMLResponse)
+async def generate_workout(request: Request, data: WorkoutInput):
+    # Process with Gemini LLM
+    workout = await generate_adaptive_workout(data)
+    
+    # Render user-facing template
+    return templates.TemplateResponse(
+        "workout_card.html",
+        {"request": request, "workout": workout}
+    )
+```
+
+### 2. Mobile-First HTML Templates
+
+Templates use iOS-inspired card design:
+
+```html
+<!-- templates/workout_card.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .phone-frame {
+            width: 375px;
+            background: white;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <h1>Today's Adaptive Workout</h1>
+        {% for exercise in workout.exercises %}
+        <div class="card">
+            <h3>{{ exercise.name }}</h3>
+            <p>{{ exercise.sets }} sets × {{ exercise.reps }} reps</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+```
+
+### 3. Screenshot-Ready Output
+
+**Access the rendered page:**
+```bash
+# Start the experiment
+uvicorn main:app --reload --port 8001
+
+# POST your data to the endpoint
+curl -X POST http://localhost:8001/generate \
+  -H "Content-Type: application/json" \
+  -d '{"fitness_level": "intermediate", ...}'
+
+# Open in browser: http://localhost:8001/generate
+# Or visit a GET endpoint: http://localhost:8001/demo
+```
+
+**Take screenshots:**
+- Browser dev tools: Device emulation (iPhone 14)
+- CMD+Shift+4 (macOS) or Snipping Tool (Windows)
+- Automated: Use Playwright/Puppeteer if needed
+
+### 4. Shared Template Components
+
+**Location:** `shared/templates/components/`
+
+**Reusable elements:**
+- `base.html` - Phone frame wrapper
+- `exercise_card.html` - Exercise display component
+- `chart_container.html` - For matplotlib charts
+- `persona_card.html` - Persona display
+- `chat_bubble.html` - Message displays
+
+### 5. Visual Output Checklist
+
+Every experiment must provide:
+
+- ✅ Mobile phone frame (375px width)
+- ✅ Clean, app-like styling
+- ✅ User-readable content (not JSON dumps)
+- ✅ Proper typography and spacing
+- ✅ Screenshot-friendly colors
+- ✅ Responsive to viewport
+
+## Example: Emotion-Aligned Training Output
+
+**User submits:** `{"mood": "anxious", "energy": 3, "stress": 7}`
+
+**Browser displays:**
+```
+┌─────────────────────────┐
+│  📱 iPhone Frame        │
+│  ┌───────────────────┐  │
+│  │ How You're Feeling│  │
+│  │ 😰 Anxious        │  │
+│  │ ⚡ Energy: 3/10   │  │
+│  └───────────────────┘  │
+│  ┌───────────────────┐  │
+│  │ Recommended       │  │
+│  │ 18-min Calming    │  │
+│  │ Yoga Flow         │  │
+│  │                   │  │
+│  │ 🧘 Grounding tone │  │
+│  └───────────────────┘  │
+│  ┌───────────────────┐  │
+│  │ Why This Works    │  │
+│  │ High stress + low │  │
+│  │ energy = gentle   │  │
+│  │ movement focus    │  │
+│  └───────────────────┘  │
+└─────────────────────────┘
+```
+
+## Alternative: Static HTML Generation
+
+For experiments without live interaction:
+
+```python
+# Generate static HTML file
+output_html = templates.get_template("workout_card.html").render(
+    workout=workout_data
+)
+
+with open("outputs/workout_2024_12_15.html", "w") as f:
+    f.write(output_html)
+
+# Open directly in browser
+import webbrowser
+webbrowser.open("outputs/workout_2024_12_15.html")
+```
+
+## Color Schemes by Experiment
+
+| Experiment | Primary Color | Use Case |
+|------------|---------------|----------|
+| Dynamic Workout Writer | `#667eea` (Purple) | Energy/Action |
+| Auto Progression | `#4facfe` (Blue) | Analytics/Trust |
+| Emotion-Aligned | `#43e97b` (Green) | Calm/Balance |
+| Cognitive Bias | `#fa709a` (Pink) | Support/Care |
+| Calendar Scheduler | `#ffd89b` (Orange) | Planning/Time |
+| Persona Generator | `#ee0979` (Red-Pink) | Identity/Bold |
+| Micro Splitter | `#a8edea` (Teal) | Flexibility |
+| Nutrition | `#fbc2eb` (Purple-Pink) | Nourishment |
+| Technique Feedback | `#fdcbf1` (Light Pink) | Guidance |
+| RPG Narrative | `#0f2027` (Dark) | Adventure |
+| Social Battles | `#f2994a` (Amber) | Competition |
 
 ---
 
