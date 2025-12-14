@@ -1,0 +1,282 @@
+{
+  "ingredients": [
+    {
+      "name": "chicken breast",
+      "category": "protein",
+      "per_100g": {
+        "calories": 165,
+        "protein": 31,
+        "carbs": 0,
+        "fat": 3.6,
+        "fiber": 0
+      },
+      "common_quantities": ["500g", "1kg", "250g"],
+      "recipes": ["protein_salad", "grilled_chicken", "chicken_stir_fry"]
+    },
+    {
+      "name": "spinach",
+      "category": "vegetable",
+      "per_100g": {
+        "calories": 23,
+        "protein": 2.9,
+        "carbs": 3.6,
+        "fat": 0.4,
+        "fiber": 2.2
+      },
+      "common_quantities": ["250g", "500g", "100g"],
+      "recipes": ["protein_salad", "green_smoothie", "spinach_omelet"]
+    },
+    {
+      "name": "brown rice",
+      "category": "carbohydrate",
+      "per_100g": {
+        "calories": 111,
+        "protein": 2.6,
+        "carbs": 23,
+        "fat": 0.9,
+        "fiber": 1.8
+      },
+      "common_quantities": ["500g", "1kg", "2kg"],
+      "recipes": ["chicken_rice_bowl", "vegetable_stir_fry"]
+    },
+    {
+      "name": "salmon",
+      "category": "protein",
+      "per_100g": {
+        "calories": 208,
+        "protein": 20,
+        "carbs": 0,
+        "fat": 13,
+        "fiber": 0
+      },
+      "common_quantities": ["200g", "400g", "150g"],
+      "recipes": ["grilled_salmon", "salmon_salad", "salmon_rice_bowl"]
+    },
+    {
+      "name": "sweet potato",
+      "category": "carbohydrate",
+      "per_100g": {
+        "calories": 86,
+        "protein": 1.6,
+        "carbs": 20,
+        "fat": 0.1,
+        "fiber": 3
+      },
+      "common_quantities": ["500g", "1kg", "2 pieces"],
+      "recipes": ["roasted_sweet_potato", "sweet_potato_bowl"]
+    },
+    {
+      "name": "eggs",
+      "category": "protein",
+      "per_100g": {
+        "calories": 155,
+        "protein": 13,
+        "carbs": 1.1,
+        "fat": 11,
+        "fiber": 0
+      },
+      "common_quantities": ["6 pack", "12 pack", "18 pack"],
+      "recipes": ["scrambled_eggs", "spinach_omelet", "egg_bowl"]
+    },
+    {
+      "name": "avocado",
+      "category": "fat",
+      "per_100g": {
+        "calories": 160,
+        "protein": 2,
+        "carbs": 8.5,
+        "fat": 15,
+        "fiber": 6.7
+      },
+      "common_quantities": ["1 piece", "2 pieces", "3 pieces"],
+      "recipes": ["avocado_toast", "protein_salad", "green_smoothie"]
+    },
+    {
+      "name": "broccoli",
+      "category": "vegetable",
+      "per_100g": {
+        "calories": 34,
+        "protein": 2.8,
+        "carbs": 7,
+        "fat": 0.4,
+        "fiber": 2.6
+      },
+      "common_quantities": ["500g", "1 head", "250g"],
+      "recipes": ["vegetable_stir_fry", "roasted_vegetables"]
+    },
+    {
+      "name": "greek yogurt",
+      "category": "protein",
+      "per_100g": {
+        "calories": 59,
+        "protein": 10,
+        "carbs": 3.6,
+        "fat": 0.4,
+        "fiber": 0
+      },
+      "common_quantities": ["500g", "1kg", "200g"],
+      "recipes": ["yogurt_bowl", "protein_smoothie"]
+    },
+    {
+      "name": "banana",
+      "category": "carbohydrate",
+      "per_100g": {
+        "calories": 89,
+        "protein": 1.1,
+        "carbs": 23,
+        "fat": 0.3,
+        "fiber": 2.6
+      },
+      "common_quantities": ["1 piece", "bunch", "2 pieces"],
+      "recipes": ["green_smoothie", "protein_smoothie", "yogurt_bowl"]
+    },
+    {
+      "name": "almonds",
+      "category": "fat",
+      "per_100g": {
+        "calories": 579,
+        "protein": 21,
+        "carbs": 22,
+        "fat": 50,
+        "fiber": 12.5
+      },
+      "common_quantities": ["200g", "500g", "100g"],
+      "recipes": ["trail_mix", "yogurt_bowl"]
+    },
+    {
+      "name": "oats",
+      "category": "carbohydrate",
+      "per_100g": {
+        "calories": 389,
+        "protein": 17,
+        "carbs": 66,
+        "fat": 7,
+        "fiber": 10.6
+      },
+      "common_quantities": ["500g", "1kg", "2kg"],
+      "recipes": ["oatmeal", "protein_smoothie"]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "protein_salad",
+      "name": "Protein Chicken Salad",
+      "ingredients": ["chicken breast", "spinach", "avocado"],
+      "prep_time": 12,
+      "difficulty": "easy",
+      "servings": 2,
+      "meal_type": "lunch",
+      "total_macros": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 15,
+        "fat": 20
+      }
+    },
+    {
+      "id": "grilled_chicken",
+      "name": "Grilled Chicken with Vegetables",
+      "ingredients": ["chicken breast", "broccoli", "sweet potato"],
+      "prep_time": 25,
+      "difficulty": "easy",
+      "servings": 2,
+      "meal_type": "dinner",
+      "total_macros": {
+        "calories": 380,
+        "protein": 42,
+        "carbs": 35,
+        "fat": 8
+      }
+    },
+    {
+      "id": "salmon_rice_bowl",
+      "name": "Salmon Rice Bowl",
+      "ingredients": ["salmon", "brown rice", "broccoli", "avocado"],
+      "prep_time": 20,
+      "difficulty": "medium",
+      "servings": 2,
+      "meal_type": "dinner",
+      "total_macros": {
+        "calories": 520,
+        "protein": 38,
+        "carbs": 45,
+        "fat": 22
+      }
+    },
+    {
+      "id": "green_smoothie",
+      "name": "Green Protein Smoothie",
+      "ingredients": ["spinach", "banana", "greek yogurt", "avocado"],
+      "prep_time": 5,
+      "difficulty": "easy",
+      "servings": 1,
+      "meal_type": "breakfast",
+      "total_macros": {
+        "calories": 320,
+        "protein": 18,
+        "carbs": 38,
+        "fat": 12
+      }
+    },
+    {
+      "id": "spinach_omelet",
+      "name": "Spinach & Egg Omelet",
+      "ingredients": ["eggs", "spinach", "avocado"],
+      "prep_time": 8,
+      "difficulty": "easy",
+      "servings": 1,
+      "meal_type": "breakfast",
+      "total_macros": {
+        "calories": 380,
+        "protein": 24,
+        "carbs": 12,
+        "fat": 26
+      }
+    },
+    {
+      "id": "yogurt_bowl",
+      "name": "Greek Yogurt Power Bowl",
+      "ingredients": ["greek yogurt", "banana", "almonds", "oats"],
+      "prep_time": 3,
+      "difficulty": "easy",
+      "servings": 1,
+      "meal_type": "breakfast",
+      "total_macros": {
+        "calories": 450,
+        "protein": 25,
+        "carbs": 55,
+        "fat": 18
+      }
+    },
+    {
+      "id": "chicken_stir_fry",
+      "name": "Chicken Vegetable Stir Fry",
+      "ingredients": ["chicken breast", "broccoli", "brown rice"],
+      "prep_time": 18,
+      "difficulty": "medium",
+      "servings": 2,
+      "meal_type": "dinner",
+      "total_macros": {
+        "calories": 410,
+        "protein": 40,
+        "carbs": 42,
+        "fat": 10
+      }
+    },
+    {
+      "id": "sweet_potato_bowl",
+      "name": "Sweet Potato Power Bowl",
+      "ingredients": ["sweet potato", "chicken breast", "spinach", "eggs"],
+      "prep_time": 22,
+      "difficulty": "medium",
+      "servings": 2,
+      "meal_type": "lunch",
+      "total_macros": {
+        "calories": 460,
+        "protein": 42,
+        "carbs": 48,
+        "fat": 14
+      }
+    }
+  ]
+}

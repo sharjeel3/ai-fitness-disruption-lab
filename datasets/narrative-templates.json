@@ -1,0 +1,245 @@
+{
+  "worlds": [
+    {
+      "theme": "cyberpunk",
+      "description": "Neon-lit dystopian future with corporate megastructures",
+      "color_scheme": ["#0f2027", "#2c5364", "#00d4ff"],
+      "chapters": [
+        {
+          "id": 1,
+          "story": "You infiltrate the neon compound. Security drones patrol above, their red sensors scanning for intruders. Your augmented muscles must be tested.",
+          "mission_type": "strength",
+          "workout_duration": 15,
+          "challenge": "Complete strength circuit to disable security grid",
+          "success_message": "Grid disabled. You move deeper into the compound."
+        },
+        {
+          "id": 2,
+          "story": "The server room lies ahead. You need speed and agility to navigate the laser grid without triggering alarms.",
+          "mission_type": "cardio",
+          "workout_duration": 12,
+          "challenge": "High-intensity cardio to breach defenses",
+          "success_message": "You slip through undetected. Data upload begins."
+        },
+        {
+          "id": 3,
+          "story": "Alarms blare. Corporate enforcers approach. You need explosive power to escape through the ventilation shafts.",
+          "mission_type": "power",
+          "workout_duration": 10,
+          "challenge": "Power training for explosive escape",
+          "success_message": "You emerge on the rooftop, mission complete."
+        }
+      ]
+    },
+    {
+      "theme": "fantasy_quest",
+      "description": "Medieval fantasy realm with dragons, magic, and ancient ruins",
+      "color_scheme": ["#8E2DE2", "#4A00E0", "#FFD700"],
+      "chapters": [
+        {
+          "id": 1,
+          "story": "The ancient forest whispers secrets. You must build the strength to lift the Stone of Awakening and begin your quest.",
+          "mission_type": "strength",
+          "workout_duration": 20,
+          "challenge": "Strength training to lift the sacred stone",
+          "success_message": "The stone glows. Your journey as the Chosen begins."
+        },
+        {
+          "id": 2,
+          "story": "Goblins ambush your path to the Crystal Caves. You need endurance to outrun them through the winding trails.",
+          "mission_type": "endurance",
+          "workout_duration": 15,
+          "challenge": "Endurance run to escape the goblin horde",
+          "success_message": "You reach the caves, breathless but alive."
+        },
+        {
+          "id": 3,
+          "story": "The Dragon of Mount Ember awakens. To face it, you must master balance and core strength to wield the legendary sword.",
+          "mission_type": "core",
+          "workout_duration": 12,
+          "challenge": "Core training to master the blade",
+          "success_message": "The dragon bows. You are now a legend."
+        }
+      ]
+    },
+    {
+      "theme": "space_explorer",
+      "description": "Sci-fi space exploration with alien worlds and zero-gravity challenges",
+      "color_scheme": ["#000000", "#1e3a8a", "#7c3aed"],
+      "chapters": [
+        {
+          "id": 1,
+          "story": "Your ship crash-lands on Planet Zephyr. Low gravity means you need controlled movements to explore without floating away.",
+          "mission_type": "control",
+          "workout_duration": 18,
+          "challenge": "Controlled movement training in low-G simulation",
+          "success_message": "Navigation systems repaired. Onward to the next sector."
+        },
+        {
+          "id": 2,
+          "story": "An alien structure pulses with energy. You must build power to break through its crystalline doors.",
+          "mission_type": "power",
+          "workout_duration": 14,
+          "challenge": "Explosive power to breach alien barriers",
+          "success_message": "The doors shatter. Ancient technology awaits."
+        },
+        {
+          "id": 3,
+          "story": "Hostile life forms detected. You sprint back to your ship across the hostile terrain, dodging plasma bursts.",
+          "mission_type": "speed",
+          "workout_duration": 10,
+          "challenge": "Speed training to escape danger",
+          "success_message": "You blast off. Mission successful, discoveries secured."
+        }
+      ]
+    },
+    {
+      "theme": "post_apocalyptic",
+      "description": "Survival in a harsh wasteland after civilization's collapse",
+      "color_scheme": ["#a16207", "#dc2626", "#78716c"],
+      "chapters": [
+        {
+          "id": 1,
+          "story": "The wasteland is unforgiving. You scavenge through ruins, needing strength to move debris and uncover supplies.",
+          "mission_type": "strength",
+          "workout_duration": 20,
+          "challenge": "Strength work to clear rubble and survive",
+          "success_message": "Supplies secured. You live another day."
+        },
+        {
+          "id": 2,
+          "story": "Raiders spotted on the horizon. You must run to the safe zone before they reach you.",
+          "mission_type": "cardio",
+          "workout_duration": 15,
+          "challenge": "Cardio endurance to outrun raiders",
+          "success_message": "You reach the bunker, safe for now."
+        },
+        {
+          "id": 3,
+          "story": "A mutant beast guards the water source. You need agility and power to defend yourself and claim what's yours.",
+          "mission_type": "combat",
+          "workout_duration": 12,
+          "challenge": "Combat training to defeat the beast",
+          "success_message": "The beast retreats. Clean water is yours."
+        }
+      ]
+    },
+    {
+      "theme": "superhero_origin",
+      "description": "Discovering and developing superhuman abilities",
+      "color_scheme": ["#dc2626", "#1e40af", "#fbbf24"],
+      "chapters": [
+        {
+          "id": 1,
+          "story": "Your powers are awakening. You feel energy coursing through you, but control requires discipline and strength.",
+          "mission_type": "strength",
+          "workout_duration": 18,
+          "challenge": "Build foundational strength to control powers",
+          "success_message": "You lift a car with one hand. Control is improving."
+        },
+        {
+          "id": 2,
+          "story": "A villain attacks downtown. You need speed to reach civilians before disaster strikes.",
+          "mission_type": "speed",
+          "workout_duration": 12,
+          "challenge": "Speed training to save the city",
+          "success_message": "Civilians saved. The city calls you hero."
+        },
+        {
+          "id": 3,
+          "story": "The final battle. Your nemesis has strength and skill. You need explosive power to match them.",
+          "mission_type": "power",
+          "workout_duration": 15,
+          "challenge": "Power training for the ultimate showdown",
+          "success_message": "Victory is yours. You are now a true hero."
+        }
+      ]
+    },
+    {
+      "theme": "ninja_warrior",
+      "description": "Training to become a legendary ninja master",
+      "color_scheme": ["#000000", "#dc2626", "#9333ea"],
+      "chapters": [
+        {
+          "id": 1,
+          "story": "The dojo master watches as you attempt the Wall of Shadows. Balance and core strength are essential.",
+          "mission_type": "core",
+          "workout_duration": 15,
+          "challenge": "Core training to master the wall",
+          "success_message": "The master nods. You advance to the next trial."
+        },
+        {
+          "id": 2,
+          "story": "An assassination mission requires stealth and explosive speed. You have one chance to strike.",
+          "mission_type": "power",
+          "workout_duration": 10,
+          "challenge": "Explosive power for the perfect strike",
+          "success_message": "Mission complete. Your legend grows."
+        },
+        {
+          "id": 3,
+          "story": "The final test: navigate the obstacle course faster than any ninja before you.",
+          "mission_type": "agility",
+          "workout_duration": 12,
+          "challenge": "Agility training to break records",
+          "success_message": "You are now a master ninja. Your name is legend."
+        }
+      ]
+    }
+  ],
+  "mission_types": {
+    "strength": {
+      "exercises": ["squat", "deadlift", "push-up", "row"],
+      "focus": "building power and muscle"
+    },
+    "cardio": {
+      "exercises": ["burpee", "jumping_jacks", "mountain_climbers"],
+      "focus": "heart rate and endurance"
+    },
+    "power": {
+      "exercises": ["kettlebell_swing", "jump_squat", "explosive_pushup"],
+      "focus": "explosive movements"
+    },
+    "core": {
+      "exercises": ["plank", "bicycle_crunch", "mountain_climbers"],
+      "focus": "stability and control"
+    },
+    "endurance": {
+      "exercises": ["long_duration_cardio", "circuit_training"],
+      "focus": "sustained effort"
+    },
+    "agility": {
+      "exercises": ["ladder_drills", "cone_drills", "quick_feet"],
+      "focus": "speed and coordination"
+    },
+    "combat": {
+      "exercises": ["shadow_boxing", "burpees", "explosive_movements"],
+      "focus": "fight simulation"
+    },
+    "control": {
+      "exercises": ["slow_movements", "balance_work", "yoga_flow"],
+      "focus": "precision and awareness"
+    },
+    "speed": {
+      "exercises": ["sprints", "high_knees", "fast_feet"],
+      "focus": "maximum velocity"
+    }
+  },
+  "progression_system": {
+    "level_1": {
+      "title": "Novice",
+      "chapters_available": 1,
+      "unlocks": "Basic story introduction"
+    },
+    "level_2": {
+      "title": "Apprentice",
+      "chapters_available": 2,
+      "unlocks": "Mid-level challenges"
+    },
+    "level_3": {
+      "title": "Master",
+      "chapters_available": 3,
+      "unlocks": "Epic conclusion and rewards"
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "archetypes": [
+    {
+      "name": "The Precision Phoenix",
+      "traits": ["disciplined", "analytical", "consistent"],
+      "goals": ["lean", "strength"],
+      "style": "controlled intensity",
+      "tagline": "Rise. Refine. Repeat.",
+      "color_palette": ["#FF6B35", "#FFD23F"],
+      "music_preference": "instrumental",
+      "workout_approach": "structured_progressive",
+      "ideal_session_length": 45,
+      "recovery_priority": "medium"
+    },
+    {
+      "name": "The Warrior Spirit",
+      "traits": ["determined", "competitive", "bold"],
+      "goals": ["strength", "power"],
+      "style": "high intensity",
+      "tagline": "Conquer. Crush. Celebrate.",
+      "color_palette": ["#C70039", "#900C3F"],
+      "music_preference": "rock",
+      "workout_approach": "intense_focused",
+      "ideal_session_length": 60,
+      "recovery_priority": "low"
+    },
+    {
+      "name": "The Balanced Flow",
+      "traits": ["mindful", "patient", "holistic"],
+      "goals": ["flexibility", "wellness"],
+      "style": "gentle progression",
+      "tagline": "Breathe. Move. Grow.",
+      "color_palette": ["#43e97b", "#38f9d7"],
+      "music_preference": "ambient",
+      "workout_approach": "mindful_movement",
+      "ideal_session_length": 30,
+      "recovery_priority": "high"
+    },
+    {
+      "name": "The Adventure Seeker",
+      "traits": ["creative", "spontaneous", "energetic"],
+      "goals": ["endurance", "fun"],
+      "style": "varied and dynamic",
+      "tagline": "Explore. Energize. Evolve.",
+      "color_palette": ["#f2994a", "#f2c94c"],
+      "music_preference": "pop",
+      "workout_approach": "varied_fun",
+      "ideal_session_length": 40,
+      "recovery_priority": "medium"
+    },
+    {
+      "name": "The Steady Achiever",
+      "traits": ["reliable", "methodical", "patient"],
+      "goals": ["lean", "endurance"],
+      "style": "consistent moderate",
+      "tagline": "Show Up. Stack Wins. Stay Strong.",
+      "color_palette": ["#4facfe", "#00f2fe"],
+      "music_preference": "indie",
+      "workout_approach": "consistent_moderate",
+      "ideal_session_length": 35,
+      "recovery_priority": "medium"
+    },
+    {
+      "name": "The Power Builder",
+      "traits": ["focused", "strong", "ambitious"],
+      "goals": ["strength", "muscle"],
+      "style": "heavy and strategic",
+      "tagline": "Lift. Build. Dominate.",
+      "color_palette": ["#667eea", "#764ba2"],
+      "music_preference": "electronic",
+      "workout_approach": "strength_focused",
+      "ideal_session_length": 75,
+      "recovery_priority": "high"
+    },
+    {
+      "name": "The Comeback Creator",
+      "traits": ["resilient", "adaptive", "hopeful"],
+      "goals": ["recovery", "wellness"],
+      "style": "gentle adaptive",
+      "tagline": "Heal. Hope. Hustle.",
+      "color_palette": ["#fa709a", "#fee140"],
+      "music_preference": "acoustic",
+      "workout_approach": "recovery_adaptive",
+      "ideal_session_length": 25,
+      "recovery_priority": "very_high"
+    },
+    {
+      "name": "The Efficiency Expert",
+      "traits": ["busy", "practical", "results_driven"],
+      "goals": ["lean", "efficiency"],
+      "style": "quick and effective",
+      "tagline": "Fast. Focused. Finished.",
+      "color_palette": ["#a8edea", "#fed6e3"],
+      "music_preference": "upbeat",
+      "workout_approach": "time_efficient",
+      "ideal_session_length": 20,
+      "recovery_priority": "low"
+    },
+    {
+      "name": "The Social Butterfly",
+      "traits": ["outgoing", "collaborative", "motivated_by_others"],
+      "goals": ["fun", "community"],
+      "style": "group energy",
+      "tagline": "Together. Stronger. Better.",
+      "color_palette": ["#fbc2eb", "#a6c1ee"],
+      "music_preference": "dance",
+      "workout_approach": "social_group",
+      "ideal_session_length": 50,
+      "recovery_priority": "medium"
+    },
+    {
+      "name": "The Night Owl Ninja",
+      "traits": ["nocturnal", "independent", "intense"],
+      "goals": ["strength", "stress_relief"],
+      "style": "late night intensity",
+      "tagline": "When Others Sleep, I Rise.",
+      "color_palette": ["#0f2027", "#2c5364"],
+      "music_preference": "lofi",
+      "workout_approach": "evening_focused",
+      "ideal_session_length": 45,
+      "recovery_priority": "medium"
+    }
+  ],
+  "trait_mappings": {
+    "disciplined": {
+      "workout_style": "structured",
+      "best_times": ["morning", "consistent_daily"],
+      "motivation_type": "progress_tracking"
+    },
+    "creative": {
+      "workout_style": "varied",
+      "best_times": ["flexible", "spontaneous"],
+      "motivation_type": "novelty"
+    },
+    "competitive": {
+      "workout_style": "challenging",
+      "best_times": ["morning", "evening"],
+      "motivation_type": "leaderboards"
+    },
+    "mindful": {
+      "workout_style": "gentle",
+      "best_times": ["morning", "evening"],
+      "motivation_type": "wellness_tracking"
+    },
+    "busy": {
+      "workout_style": "efficient",
+      "best_times": ["early_morning", "lunch_break"],
+      "motivation_type": "time_saved"
+    }
+  }
+}

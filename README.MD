@@ -132,11 +132,23 @@ cp .env.example .env
 ls datasets/
 ```
 
+> **⚠️ Important:** Always activate the virtual environment before running any Python scripts or commands:
+> ```bash
+> source venv/bin/activate  # macOS/Linux
+> venv\Scripts\activate     # Windows
+> ```
+> Your terminal prompt should show `(venv)` when activated.
+
 ## Running Individual Experiments
 
 Each experiment is self-contained:
 
 ```bash
+# Ensure virtual environment is activated
+source venv/bin/activate  # macOS/Linux
+# or
+venv\Scripts\activate     # Windows
+
 # Navigate to an experiment
 cd experiments/dynamic-workout-writer
 
@@ -275,6 +287,9 @@ Templates use iOS-inspired card design:
 
 **Access the rendered page:**
 ```bash
+# Ensure virtual environment is activated
+source venv/bin/activate  # macOS/Linux
+
 # Start the experiment
 uvicorn main:app --reload --port 8001
 
@@ -348,6 +363,8 @@ Every experiment must provide:
 For experiments without live interaction:
 
 ```python
+# Run this script with venv activated: source venv/bin/activate
+
 # Generate static HTML file
 output_html = templates.get_template("workout_card.html").render(
     workout=workout_data

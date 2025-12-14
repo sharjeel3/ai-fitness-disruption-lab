@@ -1,0 +1,202 @@
+{
+  "biases": [
+    {
+      "type": "all-or-nothing",
+      "description": "Viewing situations in extreme terms without recognizing middle ground",
+      "patterns": [
+        "I missed one workout so this whole week is pointless",
+        "If I can't do the full workout, why bother",
+        "I ate dessert, my diet is ruined",
+        "I can't do all 10 reps so I shouldn't even try",
+        "One bad day means I've lost all my progress"
+      ],
+      "reframes": [
+        "Missing one day doesn't erase your progress. One workout is better than none.",
+        "Consistency over perfection. Let's find what you CAN do today.",
+        "One meal doesn't define your nutrition. Get back on track with the next one.",
+        "Doing 6 quality reps is better than skipping entirely. Let's adjust and keep going.",
+        "Progress isn't linear. One tough day is just data, not failure."
+      ],
+      "interventions": ["scaled_workout", "micro_session", "progress_reminder"],
+      "coaching_tone": "supportive_realistic"
+    },
+    {
+      "type": "catastrophizing",
+      "description": "Expecting the worst possible outcome",
+      "patterns": [
+        "I'll never get fit",
+        "This injury means I can never workout again",
+        "I'm too far behind to ever catch up",
+        "Everyone is judging my form",
+        "I'm going to fail at this"
+      ],
+      "reframes": [
+        "Fitness is a journey with ups and downs. Small steps compound over time.",
+        "Most injuries heal with proper care. Let's focus on what you CAN safely do.",
+        "Everyone starts somewhere. Comparison is the thief of joy.",
+        "Most people are focused on their own workout. You're doing great showing up.",
+        "Setbacks are part of growth. Let's break this into smaller, achievable steps."
+      ],
+      "interventions": ["evidence_check", "small_wins", "perspective_shift"],
+      "coaching_tone": "reassuring_grounding"
+    },
+    {
+      "type": "comparison_trap",
+      "description": "Measuring self-worth against others' progress or abilities",
+      "patterns": [
+        "Everyone else can lift more than me",
+        "I'll never look like them",
+        "Other people make this look so easy",
+        "I'm the weakest person here",
+        "Why is everyone else progressing faster"
+      ],
+      "reframes": [
+        "Your only competition is who you were yesterday. Everyone has their own timeline.",
+        "Social media shows highlights, not the whole journey. Focus on YOUR progress.",
+        "What looks easy is often years of practice. Respect your own journey.",
+        "Strength is relative. You're stronger than when you started, and that's what matters.",
+        "Progress isn't always visible. Trust the process and celebrate small wins."
+      ],
+      "interventions": ["personal_progress_review", "strength_celebration", "goal_refocus"],
+      "coaching_tone": "empowering_personal"
+    },
+    {
+      "type": "future_discounting",
+      "description": "Prioritizing immediate comfort over long-term goals",
+      "patterns": [
+        "I'll start tomorrow",
+        "Just one more episode, then I'll workout",
+        "I'm too tired right now",
+        "I deserve a rest day (for the 5th time this week)",
+        "I'll get serious about this next month"
+      ],
+      "reframes": [
+        "The best time was yesterday. The second best time is now. 10 minutes is enough.",
+        "Future you will thank present you. What can you do in the next 15 minutes?",
+        "Tired is normal. Starting often creates energy. Let's do a gentle warm-up and see.",
+        "Rest is important, but consistency builds momentum. How about a light session?",
+        "There's no perfect time. Small action today beats perfect plans tomorrow."
+      ],
+      "interventions": ["micro_commitment", "energy_boost_session", "accountability_reminder"],
+      "coaching_tone": "motivating_action_oriented"
+    },
+    {
+      "type": "impostor_syndrome",
+      "description": "Feeling like you don't belong or aren't worthy of success",
+      "patterns": [
+        "I don't look like someone who works out",
+        "Everyone here knows what they're doing except me",
+        "I'm just pretending to be fit",
+        "I don't deserve to be here",
+        "I'm a beginner, I shouldn't try this"
+      ],
+      "reframes": [
+        "Every expert was once a beginner. You belong here as much as anyone.",
+        "Asking questions and learning is strength, not weakness. Everyone started somewhere.",
+        "Your body is capable of amazing things. Give yourself credit for showing up.",
+        "You've earned your place by taking action. Keep going.",
+        "Being a beginner means you're learning. That's exactly where growth happens."
+      ],
+      "interventions": ["beginner_celebration", "community_reminder", "confidence_builder"],
+      "coaching_tone": "validating_encouraging"
+    },
+    {
+      "type": "perfectionism_paralysis",
+      "description": "Waiting for perfect conditions before taking action",
+      "patterns": [
+        "I need the perfect gym setup before I start",
+        "I'll wait until I have more time",
+        "I need to learn everything before I begin",
+        "My form has to be perfect or I shouldn't do it",
+        "I'll start when I feel more motivated"
+      ],
+      "reframes": [
+        "Progress beats perfection. Start with what you have right now.",
+        "You have time for what you prioritize. Even 10 minutes counts.",
+        "Learning by doing is powerful. Start simple and build from there.",
+        "Good form develops with practice. Focus on fundamentals and improve gradually.",
+        "Motivation follows action. Start, and the energy will come."
+      ],
+      "interventions": ["minimal_equipment_workout", "quick_start_guide", "form_basics"],
+      "coaching_tone": "practical_permissive"
+    },
+    {
+      "type": "fixed_mindset",
+      "description": "Believing abilities are static and cannot be developed",
+      "patterns": [
+        "I'm just not athletic",
+        "I've never been flexible, I never will be",
+        "Some people are just naturally strong",
+        "I'm too old to start",
+        "I'm not built for this"
+      ],
+      "reframes": [
+        "Athletic ability is built, not born. Every rep is building your capacity.",
+        "Flexibility improves with consistent practice. You can change.",
+        "Strength is earned through training. Everyone can get stronger.",
+        "Age is just a number. People in their 70s build muscle. You absolutely can too.",
+        "Your body adapts to what you ask of it. Give it time and consistency."
+      ],
+      "interventions": ["growth_stories", "progress_science", "capability_evidence"],
+      "coaching_tone": "educational_empowering"
+    },
+    {
+      "type": "emotional_reasoning",
+      "description": "Believing feelings equal facts",
+      "patterns": [
+        "I feel weak so I must be weak",
+        "I don't feel like it so I shouldn't do it",
+        "I feel like a failure so I am one",
+        "I feel too tired to workout",
+        "I feel like I'm not making progress"
+      ],
+      "reframes": [
+        "Feelings are temporary. Your strength is measured by action, not emotion.",
+        "Feelings aren't commands. Let's do 5 minutes and check in.",
+        "One feeling doesn't define you. Look at what you've actually accomplished.",
+        "Fatigue is common. Movement often creates energy. Let's try a gentle start.",
+        "Progress isn't always felt. Look at your data - you're stronger than you think."
+      ],
+      "interventions": ["data_check", "emotion_vs_fact", "gentle_movement_trial"],
+      "coaching_tone": "gentle_challenging"
+    }
+  ],
+  "intervention_types": {
+    "scaled_workout": {
+      "description": "Reduce volume/intensity while maintaining consistency",
+      "example_adjustments": ["reduce sets by 50%", "lower weight", "decrease reps", "shorter duration"]
+    },
+    "micro_session": {
+      "description": "Ultra-short workout to maintain habit",
+      "example_adjustments": ["5-10 minute session", "single exercise focus", "mobility only"]
+    },
+    "progress_reminder": {
+      "description": "Show user their historical progress data",
+      "example_data": ["weight lifted over time", "consistency streak", "PRs achieved"]
+    },
+    "evidence_check": {
+      "description": "Challenge catastrophic thinking with facts",
+      "example_prompts": ["What evidence supports this?", "What would you tell a friend?"]
+    },
+    "small_wins": {
+      "description": "Highlight recent achievements",
+      "example_content": ["completed workouts this week", "new exercises tried", "form improvements"]
+    },
+    "personal_progress_review": {
+      "description": "Compare user to their past self",
+      "example_metrics": ["strength gains", "endurance improvements", "consistency data"]
+    },
+    "micro_commitment": {
+      "description": "Get user to commit to smallest possible action",
+      "example_commitments": ["put on workout clothes", "do 1 exercise", "5 minute timer"]
+    },
+    "confidence_builder": {
+      "description": "Remind user of their capabilities",
+      "example_reminders": ["exercises mastered", "challenges overcome", "growth achieved"]
+    },
+    "growth_stories": {
+      "description": "Share examples of transformation",
+      "example_stories": ["beginner to athlete stories", "injury comeback stories", "late starter success"]
+    }
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "mappings": [
+    {
+      "mood": "anxious",
+      "energy_range": [1, 4],
+      "stress_range": [6, 10],
+      "recommended_intensity": "low",
+      "workout_types": ["yoga", "stretching", "walking", "breathwork"],
+      "coaching_tone": "grounding",
+      "duration": [10, 20],
+      "example_sessions": [
+        "18-min calming yoga flow",
+        "15-min gentle stretching",
+        "12-min mindful walking meditation"
+      ],
+      "why_this_works": "High stress + low energy = gentle movement to calm nervous system"
+    },
+    {
+      "mood": "energetic",
+      "energy_range": [7, 10],
+      "stress_range": [1, 4],
+      "recommended_intensity": "high",
+      "workout_types": ["HIIT", "strength", "running", "circuit_training"],
+      "coaching_tone": "motivating",
+      "duration": [30, 45],
+      "example_sessions": [
+        "35-min high-intensity circuit",
+        "40-min strength training",
+        "30-min interval running"
+      ],
+      "why_this_works": "High energy + low stress = ideal state for challenging workouts"
+    },
+    {
+      "mood": "tired",
+      "energy_range": [1, 3],
+      "stress_range": [1, 5],
+      "recommended_intensity": "low",
+      "workout_types": ["gentle_yoga", "walking", "mobility", "stretching"],
+      "coaching_tone": "supportive",
+      "duration": [10, 15],
+      "example_sessions": [
+        "12-min restorative yoga",
+        "10-min gentle mobility flow",
+        "15-min easy walk"
+      ],
+      "why_this_works": "Low energy + manageable stress = light movement to energize without depleting"
+    },
+    {
+      "mood": "motivated",
+      "energy_range": [6, 9],
+      "stress_range": [3, 6],
+      "recommended_intensity": "moderate-high",
+      "workout_types": ["strength", "cardio", "functional_training"],
+      "coaching_tone": "encouraging",
+      "duration": [25, 40],
+      "example_sessions": [
+        "35-min full-body strength",
+        "30-min cardio intervals",
+        "40-min functional circuit"
+      ],
+      "why_this_works": "Good energy + moderate stress = productive training zone"
+    },
+    {
+      "mood": "frustrated",
+      "energy_range": [4, 7],
+      "stress_range": [7, 10],
+      "recommended_intensity": "moderate",
+      "workout_types": ["boxing", "HIIT", "running", "kettlebell"],
+      "coaching_tone": "empowering",
+      "duration": [20, 30],
+      "example_sessions": [
+        "25-min boxing workout",
+        "20-min stress-relief HIIT",
+        "30-min power kettlebell session"
+      ],
+      "why_this_works": "Medium energy + high stress = release tension through intense but controlled movement"
+    },
+    {
+      "mood": "sad",
+      "energy_range": [2, 5],
+      "stress_range": [5, 8],
+      "recommended_intensity": "low-moderate",
+      "workout_types": ["walking", "gentle_yoga", "dancing", "light_cardio"],
+      "coaching_tone": "compassionate",
+      "duration": [15, 25],
+      "example_sessions": [
+        "20-min mood-boosting walk",
+        "15-min uplifting yoga flow",
+        "25-min gentle dance session"
+      ],
+      "why_this_works": "Low-medium energy + elevated stress = mood-lifting movement with endorphin release"
+    },
+    {
+      "mood": "overwhelmed",
+      "energy_range": [3, 6],
+      "stress_range": [8, 10],
+      "recommended_intensity": "low",
+      "workout_types": ["breathwork", "restorative_yoga", "stretching", "meditation"],
+      "coaching_tone": "calming",
+      "duration": [10, 20],
+      "example_sessions": [
+        "15-min breathwork session",
+        "12-min restorative yoga",
+        "10-min guided meditation with movement"
+      ],
+      "why_this_works": "Variable energy + very high stress = need to calm before exerting"
+    },
+    {
+      "mood": "confident",
+      "energy_range": [7, 10],
+      "stress_range": [2, 5],
+      "recommended_intensity": "high",
+      "workout_types": ["PR_attempts", "challenging_lifts", "advanced_training"],
+      "coaching_tone": "bold",
+      "duration": [40, 60],
+      "example_sessions": [
+        "45-min heavy strength session",
+        "50-min advanced circuit",
+        "60-min PR-focused workout"
+      ],
+      "why_this_works": "High energy + low stress + confidence = perfect for challenging personal records"
+    },
+    {
+      "mood": "restless",
+      "energy_range": [5, 8],
+      "stress_range": [4, 7],
+      "recommended_intensity": "moderate-high",
+      "workout_types": ["cardio", "dynamic_movement", "sports_drills"],
+      "coaching_tone": "channeling",
+      "duration": [25, 35],
+      "example_sessions": [
+        "30-min cardio intervals",
+        "25-min dynamic movement flow",
+        "35-min sports conditioning"
+      ],
+      "why_this_works": "Medium-high energy + moderate stress = channel restless energy productively"
+    },
+    {
+      "mood": "content",
+      "energy_range": [5, 7],
+      "stress_range": [2, 4],
+      "recommended_intensity": "moderate",
+      "workout_types": ["balanced_session", "yoga_strength_blend", "functional_training"],
+      "coaching_tone": "steady",
+      "duration": [30, 40],
+      "example_sessions": [
+        "35-min balanced strength + flexibility",
+        "30-min yoga-strength fusion",
+        "40-min functional training"
+      ],
+      "why_this_works": "Balanced energy + low stress = maintain equilibrium with well-rounded training"
+    },
+    {
+      "mood": "excited",
+      "energy_range": [8, 10],
+      "stress_range": [1, 3],
+      "recommended_intensity": "high",
+      "workout_types": ["fun_cardio", "dance", "group_fitness", "challenging_circuits"],
+      "coaching_tone": "enthusiastic",
+      "duration": [30, 45],
+      "example_sessions": [
+        "40-min dance cardio party",
+        "35-min challenging circuit",
+        "45-min fun group-style workout"
+      ],
+      "why_this_works": "Very high energy + very low stress = capitalize on positive energy with fun, intense sessions"
+    },
+    {
+      "mood": "neutral",
+      "energy_range": [4, 6],
+      "stress_range": [3, 6],
+      "recommended_intensity": "moderate",
+      "workout_types": ["standard_routine", "maintenance_training"],
+      "coaching_tone": "professional",
+      "duration": [25, 35],
+      "example_sessions": [
+        "30-min standard strength routine",
+        "25-min moderate cardio",
+        "35-min balanced workout"
+      ],
+      "why_this_works": "Baseline state = stick to consistent routine for steady progress"
+    }
+  ],
+  "coaching_tones": {
+    "grounding": {
+      "language_style": "calm, present-focused, gentle",
+      "example_phrases": [
+        "Let's focus on your breath",
+        "Notice how your body feels",
+        "Move slowly and with intention"
+      ]
+    },
+    "motivating": {
+      "language_style": "energetic, action-oriented, powerful",
+      "example_phrases": [
+        "You've got this!",
+        "Let's push those limits",
+        "Feel that strength building"
+      ]
+    },
+    "supportive": {
+      "language_style": "kind, understanding, gentle encouragement",
+      "example_phrases": [
+        "Listen to your body",
+        "Any movement is good movement",
+        "You're doing great showing up"
+      ]
+    },
+    "encouraging": {
+      "language_style": "positive, affirming, forward-looking",
+      "example_phrases": [
+        "Great work!",
+        "You're making progress",
+        "Keep that momentum going"
+      ]
+    },
+    "empowering": {
+      "language_style": "strong, confident, transformative",
+      "example_phrases": [
+        "Release that tension",
+        "Channel this energy",
+        "Transform this feeling into power"
+      ]
+    },
+    "compassionate": {
+      "language_style": "warm, validating, patient",
+      "example_phrases": [
+        "It's okay to feel this way",
+        "Movement can help shift your mood",
+        "Be gentle with yourself today"
+      ]
+    },
+    "calming": {
+      "language_style": "soothing, reassuring, peaceful",
+      "example_phrases": [
+        "Let's bring some calm to your day",
+        "Slow, steady, peaceful",
+        "You're safe here"
+      ]
+    },
+    "bold": {
+      "language_style": "confident, challenging, ambitious",
+      "example_phrases": [
+        "Time to test your limits",
+        "Show yourself what you're capable of",
+        "Own this workout"
+      ]
+    },
+    "channeling": {
+      "language_style": "directing, focusing, purposeful",
+      "example_phrases": [
+        "Let's channel this energy",
+        "Direct this feeling into movement",
+        "Use this to fuel your workout"
+      ]
+    },
+    "steady": {
+      "language_style": "balanced, consistent, reliable",
+      "example_phrases": [
+        "Maintain your rhythm",
+        "Steady and strong",
+        "Consistency is key"
+      ]
+    },
+    "enthusiastic": {
+      "language_style": "upbeat, fun, playful",
+      "example_phrases": [
+        "Let's have some fun!",
+        "Bring that energy!",
+        "Yes! Keep it up!"
+      ]
+    },
+    "professional": {
+      "language_style": "clear, instructional, focused",
+      "example_phrases": [
+        "Focus on form",
+        "Execute each rep with control",
+        "Maintain proper technique"
+      ]
+    }
+  },
+  "intensity_guidelines": {
+    "low": {
+      "heart_rate_zone": "50-60% max HR",
+      "perceived_exertion": "3-4 out of 10",
+      "breathing": "easy conversation possible",
+      "examples": ["gentle yoga", "walking", "stretching"]
+    },
+    "low-moderate": {
+      "heart_rate_zone": "60-70% max HR",
+      "perceived_exertion": "4-5 out of 10",
+      "breathing": "can talk in sentences",
+      "examples": ["power yoga", "light jogging", "easy circuits"]
+    },
+    "moderate": {
+      "heart_rate_zone": "70-80% max HR",
+      "perceived_exertion": "6-7 out of 10",
+      "breathing": "can talk in short phrases",
+      "examples": ["steady cardio", "moderate strength", "standard circuits"]
+    },
+    "moderate-high": {
+      "heart_rate_zone": "80-85% max HR",
+      "perceived_exertion": "7-8 out of 10",
+      "breathing": "challenging to talk",
+      "examples": ["HIIT", "heavy strength", "challenging circuits"]
+    },
+    "high": {
+      "heart_rate_zone": "85-95% max HR",
+      "perceived_exertion": "8-9 out of 10",
+      "breathing": "can only say a few words",
+      "examples": ["sprints", "max effort HIIT", "PR attempts"]
+    }
+  }
+}
