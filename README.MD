@@ -21,8 +21,32 @@ Every experiment is designed to be:
 │
 ├── README.md
 ├── safety-guidelines.md
+├── .env.example                # Template for API keys
+├── .gitignore
+├── requirements.txt            # Global dependencies
+├── docker-compose.yml          # Optional: run all prototypes
+│
+├── datasets/                   # Shared seed/training data
+│   ├── exercises.json
+│   ├── nutrition.json
+│   ├── personas.json
+│   ├── cognitive-biases.json
+│   └── narrative-templates.json
+│
+├── shared/                     # Common utilities
+│   ├── __init__.py
+│   ├── gemini_client.py
+│   ├── image_generator.py
+│   ├── validators.py
+│   └── config.py
+│
 ├── experiments/
 │   ├── dynamic-workout-writer/
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   ├── Dockerfile
+│   │   ├── test_data.json
+│   │   └── outputs/
 │   ├── auto-progression-engine/
 │   ├── emotion-aligned-training/
 │   ├── cognitive-bias-antidote/
@@ -41,14 +65,271 @@ Every experiment is designed to be:
 
 ---
 
-# ⚙️ Technology Assumptions
+# ⚙️ Technology Stack
 
 * **LLM:** gemini-2.5-flash-lite via Google AI Studio
-* **Backend:** Python + FastAPI
+* **Backend:** Python 3.10+ with FastAPI
 * **Data Storage:** Local JSON/SQLite only (prototypes)
-* **Image Generation:** Gemini Image API or Python
+* **Image Generation:** Gemini Image API or Python (matplotlib, Pillow)
 * **Visual Output:** PNG/SVG/HTML for screenshots
 * **UI:** Optional (you do *not* need to build a frontend)
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+* Python 3.10 or higher
+* Google AI Studio API key ([Get it here](https://aistudio.google.com/apikey))
+* Git
+* (Optional) Docker & Docker Compose for containerized deployment
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/sharjeel3/ai-fitness-disruption-lab.git
+cd ai-fitness-disruption-lab
+```
+
+### 2. Set Up Python Environment
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate  # macOS/Linux
+# or
+venv\Scripts\activate     # Windows
+```
+
+### 3. Install Dependencies
+
+```bash
+# Install global dependencies
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env and add your API keys
+# GEMINI_API_KEY=your_api_key_here
+```
+
+### 5. Initialize Datasets
+
+```bash
+# Datasets are included in the repo
+# Verify they exist in datasets/
+ls datasets/
+```
+
+## Running Individual Experiments
+
+Each experiment is self-contained:
+
+```bash
+# Navigate to an experiment
+cd experiments/dynamic-workout-writer
+
+# Install experiment-specific dependencies (if any)
+pip install -r requirements.txt
+
+# Run the FastAPI server
+uvicorn main:app --reload --port 8001
+
+# Access at http://localhost:8001
+# API docs at http://localhost:8001/docs
+```
+
+## Running Multiple Experiments (Docker)
+
+```bash
+# Build and start all services
+docker-compose up --build
+
+# Each experiment will run on a different port:
+# Dynamic Workout Writer: http://localhost:8001
+# Auto Progression Engine: http://localhost:8002
+# etc.
+```
+
+## Project Configuration
+
+### Port Allocation
+
+| Experiment | Port |
+|------------|------|
+| Dynamic Workout Writer | 8001 |
+| Auto Progression Engine | 8002 |
+| Emotion-Aligned Training | 8003 |
+| Cognitive Bias Antidote | 8004 |
+| Calendar-Adaptive Scheduler | 8005 |
+| Fitness Persona Generator | 8006 |
+| Micro-Workout Splitter | 8007 |
+| Nutrition via Receipts | 8008 |
+| Technique Feedback | 8009 |
+| RPG Narrative Training | 8010 |
+| Social Micro Battles | 8011 |
+
+### API Rate Limits
+
+* Gemini API: Check current limits at [Google AI Studio](https://aistudio.google.com)
+* Recommended: Implement basic rate limiting in production
+* For prototypes: Sequential requests are fine
+
+---
+
+# 📊 Dataset Requirements
+
+Each dataset file provides seed data for AI-powered features. All files are in JSON format and stored in `datasets/`.
+
+## 1. Exercise Library (`exercises.json`)
+
+```json
+{
+  "exercises": [
+    {
+      "id": "squat_001",
+      "name": "Goblet Squat",
+      "category": "strength",
+      "primary_muscles": ["quadriceps", "glutes"],
+      "secondary_muscles": ["hamstrings", "core"],
+      "equipment": ["dumbbell", "kettlebell"],
+      "difficulty": "beginner",
+      "progression_path": ["bodyweight_squat", "goblet_squat", "barbell_squat"],
+      "default_sets": 3,
+      "default_reps": "8-12",
+      "common_issues": ["knees_caving", "forward_lean"]
+    }
+  ]
+}
+```
+
+**Purpose:** Dynamic Workout Writer, Auto Progression Engine, Technique Feedback
+
+## 2. Nutrition Database (`nutrition.json`)
+
+```json
+{
+  "ingredients": [
+    {
+      "name": "chicken breast",
+      "category": "protein",
+      "per_100g": {
+        "calories": 165,
+        "protein": 31,
+        "carbs": 0,
+        "fat": 3.6
+      },
+      "recipes": ["protein_salad", "grilled_chicken"]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "protein_salad",
+      "name": "Protein Chicken Salad",
+      "ingredients": ["chicken breast", "spinach"],
+      "prep_time": 12,
+      "difficulty": "easy"
+    }
+  ]
+}
+```
+
+**Purpose:** Nutrition via Receipts
+
+## 3. Persona Templates (`personas.json`)
+
+```json
+{
+  "archetypes": [
+    {
+      "name": "The Precision Phoenix",
+      "traits": ["disciplined", "analytical"],
+      "goals": ["lean", "strength"],
+      "style": "controlled intensity",
+      "tagline": "Rise. Refine. Repeat.",
+      "color_palette": ["#FF6B35", "#FFD23F"],
+      "music_preference": "instrumental"
+    }
+  ]
+}
+```
+
+**Purpose:** Fitness Persona Generator
+
+## 4. Cognitive Biases (`cognitive-biases.json`)
+
+```json
+{
+  "biases": [
+    {
+      "type": "all-or-nothing",
+      "patterns": [
+        "I missed one workout so this whole week is pointless",
+        "If I can't do the full workout, why bother"
+      ],
+      "reframes": [
+        "Missing one day doesn't erase your progress. One workout is better than none.",
+        "Consistency over perfection. Let's find what you CAN do today."
+      ],
+      "interventions": ["scaled_workout", "micro_session"]
+    }
+  ]
+}
+```
+
+**Purpose:** Cognitive Bias Antidote Engine
+
+## 5. Narrative Templates (`narrative-templates.json`)
+
+```json
+{
+  "worlds": [
+    {
+      "theme": "cyberpunk",
+      "chapters": [
+        {
+          "id": 1,
+          "story": "You infiltrate the neon compound. Security drones patrol above.",
+          "mission_type": "strength",
+          "workout_duration": 15
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Purpose:** RPG Narrative Training Engine
+
+## 6. Emotion-Workout Mapping (`emotion-mapping.json`)
+
+```json
+{
+  "mappings": [
+    {
+      "mood": "anxious",
+      "energy_range": [1, 4],
+      "stress_range": [6, 10],
+      "recommended_intensity": "low",
+      "workout_types": ["yoga", "stretching", "walking"],
+      "coaching_tone": "grounding",
+      "duration": [10, 20]
+    }
+  ]
+}
+```
+
+**Purpose:** Emotion-Aligned Training Model
 
 ---
 
