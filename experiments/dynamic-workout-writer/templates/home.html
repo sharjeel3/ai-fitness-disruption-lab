@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Workout Writer (DW²)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .slider-value {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            flex: 1 1 calc(33.333% - 10px);
+            min-width: 120px;
+        }
+
+        .checkbox-item input {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkbox-item label {
+            display: inline;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-demo {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-demo:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .checkbox-item {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏋️ Dynamic Workout Writer</h1>
+            <p>AI-powered adaptive workouts based on your daily condition</p>
+        </div>
+
+        <div class="form-card">
+            <form action="/generate" method="POST" id="workoutForm">
+                <div class="form-group">
+                    <label for="fitness_level">Fitness Level</label>
+                    <select id="fitness_level" name="fitness_level" required>
+                        <option value="">Select your level...</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fitness Goals (select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal_strength" name="goals" value="strength">
+                            <label for="goal_strength">Strength</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal_cardio" name="goals" value="cardio">
+                            <label for="goal_cardio">Cardio</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal_flexibility" name="goals" value="flexibility">
+                            <label for="goal_flexibility">Flexibility</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal_mobility" name="goals" value="mobility">
+                            <label for="goal_mobility">Mobility</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal_endurance" name="goals" value="endurance">
+                            <label for="goal_endurance">Endurance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal_power" name="goals" value="power">
+                            <label for="goal_power">Power</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="time_available">Time Available (minutes)</label>
+                    <input type="number" id="time_available" name="time_available" min="5" max="120" value="30" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Available Equipment (select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eq_bodyweight" name="equipment" value="bodyweight" checked>
+                            <label for="eq_bodyweight">Bodyweight</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eq_dumbbells" name="equipment" value="dumbbells">
+                            <label for="eq_dumbbells">Dumbbells</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eq_barbell" name="equipment" value="barbell">
+                            <label for="eq_barbell">Barbell</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eq_kettlebell" name="equipment" value="kettlebell">
+                            <label for="eq_kettlebell">Kettlebell</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eq_bands" name="equipment" value="resistance bands">
+                            <label for="eq_bands">Resistance Bands</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <label for="fatigue">Current Fatigue Level</label>
+                        <span class="slider-value" id="fatigue_value">5</span>
+                    </div>
+                    <input type="range" id="fatigue" name="fatigue" min="1" max="10" value="5" oninput="document.getElementById('fatigue_value').textContent = this.value">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <label for="stress">Current Stress Level</label>
+                        <span class="slider-value" id="stress_value">5</span>
+                    </div>
+                    <input type="range" id="stress" name="stress" min="1" max="10" value="5" oninput="document.getElementById('stress_value').textContent = this.value">
+                </div>
+
+                <div class="form-group">
+                    <label for="sleep_hours">Sleep Last Night (hours)</label>
+                    <input type="number" id="sleep_hours" name="sleep_hours" min="0" max="24" step="0.5" value="7" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Generate Workout 💪</button>
+
+                <div style="margin-top: 15px;">
+                    <a href="/demo" class="btn-demo">View Demo Workout</a>
+                </div>
+            </form>
+
+            <div class="info-box">
+                <p><strong>How it works:</strong> Our AI analyzes your fitness level, goals, available time, equipment, and current physical/mental state to create a perfectly adapted workout just for you.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handling with JSON conversion
+        document.getElementById('workoutForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Convert form data to JSON
+            const data = {
+                fitness_level: formData.get('fitness_level'),
+                goals: formData.getAll('goals'),
+                time_available: parseInt(formData.get('time_available')),
+                equipment: formData.getAll('equipment'),
+                fatigue: parseInt(formData.get('fatigue')),
+                stress: parseInt(formData.get('stress')),
+                sleep_hours: parseFloat(formData.get('sleep_hours'))
+            };
+
+            // Validate at least one goal is selected
+            if (data.goals.length === 0) {
+                alert('Please select at least one fitness goal');
+                return;
+            }
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const html = await response.text();
+                    document.open();
+                    document.write(html);
+                    document.close();
+                } else {
+                    alert('Error generating workout. Please try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please check your connection.');
+            }
+        });
+    </script>
+</body>
+</html>

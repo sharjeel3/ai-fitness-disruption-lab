@@ -1,0 +1,69 @@
+{
+  "test_scenarios": [
+    {
+      "name": "Beginner Low Energy",
+      "input": {
+        "fitness_level": "beginner",
+        "goals": ["strength"],
+        "time_available": 20,
+        "equipment": ["bodyweight"],
+        "fatigue": 7,
+        "stress": 6,
+        "sleep_hours": 5
+      },
+      "expected_behavior": "Should generate low-intensity, shorter workout with focus on recovery"
+    },
+    {
+      "name": "Intermediate Fresh Morning",
+      "input": {
+        "fitness_level": "intermediate",
+        "goals": ["strength", "cardio"],
+        "time_available": 45,
+        "equipment": ["dumbbells", "bodyweight"],
+        "fatigue": 2,
+        "stress": 3,
+        "sleep_hours": 8
+      },
+      "expected_behavior": "Should generate moderate to high intensity workout with good volume"
+    },
+    {
+      "name": "Advanced High Stress",
+      "input": {
+        "fitness_level": "advanced",
+        "goals": ["strength", "power"],
+        "time_available": 60,
+        "equipment": ["dumbbells", "barbell", "kettlebell"],
+        "fatigue": 4,
+        "stress": 9,
+        "sleep_hours": 6.5
+      },
+      "expected_behavior": "Should include stress-relief elements despite advanced level"
+    },
+    {
+      "name": "Quick Mobility Session",
+      "input": {
+        "fitness_level": "intermediate",
+        "goals": ["flexibility", "mobility"],
+        "time_available": 15,
+        "equipment": ["bodyweight"],
+        "fatigue": 5,
+        "stress": 5,
+        "sleep_hours": 7
+      },
+      "expected_behavior": "Should generate focused mobility/stretching routine"
+    },
+    {
+      "name": "Full Equipment Available",
+      "input": {
+        "fitness_level": "intermediate",
+        "goals": ["strength", "endurance"],
+        "time_available": 50,
+        "equipment": ["dumbbells", "barbell", "kettlebell", "resistance bands"],
+        "fatigue": 3,
+        "stress": 4,
+        "sleep_hours": 7.5
+      },
+      "expected_behavior": "Should utilize variety of equipment in workout design"
+    }
+  ]
+}

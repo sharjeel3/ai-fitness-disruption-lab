@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Adaptive Workout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 375px;
+            background: white;
+            border-radius: 40px;
+            padding: 25px 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        /* Phone notch */
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-top: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .header .date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .status-item {
+            flex: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .status-item .label {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-item .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+
+        .intensity-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: #f0f4ff;
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .rationale-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .rationale-box h3 {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rationale-box p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .exercise-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .exercise-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .exercise-name {
+            flex: 1;
+            margin-left: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .exercise-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .detail-item {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-top: 2px;
+        }
+
+        .exercise-notes {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 400px) {
+            .phone-frame {
+                border-radius: 20px;
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .exercise-name {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <h1>Today's Adaptive Workout</h1>
+            <div class="date">{{ workout_data.get('workout_date', 'Today') }}</div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="label">Duration</div>
+                <div class="value">{{ workout_data.total_duration }}m</div>
+            </div>
+            <div class="status-item">
+                <div class="label">Exercises</div>
+                <div class="value">{{ workout_data.workout|length }}</div>
+            </div>
+            <div class="status-item">
+                <div class="label">Level</div>
+                <div class="value">{{ user_input.fitness_level|title }}</div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <span class="intensity-badge">{{ workout_data.intensity_level|upper }} INTENSITY</span>
+        </div>
+
+        <div class="rationale-box">
+            <h3>Why This Workout?</h3>
+            <p>{{ workout_data.rationale }}</p>
+        </div>
+
+        {% for exercise in workout_data.workout %}
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">{{ loop.index }}</div>
+                <div class="exercise-name">{{ exercise.exercise }}</div>
+            </div>
+            
+            <div class="exercise-details">
+                <div class="detail-item">
+                    <div class="detail-label">Sets</div>
+                    <div class="detail-value">{{ exercise.sets }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Reps</div>
+                    <div class="detail-value">{{ exercise.reps }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Rest</div>
+                    <div class="detail-value">{{ exercise.rest }}</div>
+                </div>
+            </div>
+
+            {% if exercise.notes %}
+            <div class="exercise-notes">
+                💡 {{ exercise.notes }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <a href="/" class="btn-back">← Create New Workout</a>
+    </div>
+</body>
+</html>
