@@ -1,0 +1,324 @@
+{
+  "test_scenarios": [
+    {
+      "name": "Steady Progression - Strength Goal",
+      "input": {
+        "exercise": "Barbell Squat",
+        "goal": "strength",
+        "history": [
+          {
+            "exercise": "Barbell Squat",
+            "weight": 60,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 7,
+            "date": "2024-12-01",
+            "notes": "Felt strong, good depth"
+          },
+          {
+            "exercise": "Barbell Squat",
+            "weight": 62.5,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 7,
+            "date": "2024-12-04",
+            "notes": "Consistent form"
+          },
+          {
+            "exercise": "Barbell Squat",
+            "weight": 65,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-12-07",
+            "notes": "Last rep challenging"
+          },
+          {
+            "exercise": "Barbell Squat",
+            "weight": 65,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 7,
+            "date": "2024-12-11",
+            "notes": "Adapted well"
+          },
+          {
+            "exercise": "Barbell Squat",
+            "weight": 67.5,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-12-14",
+            "notes": "Ready for more"
+          }
+        ]
+      },
+      "expected_behavior": "Should recommend small weight increase (2.5-5kg) with strength-focused rep range"
+    },
+    {
+      "name": "High Fatigue - Deload Needed",
+      "input": {
+        "exercise": "Bench Press",
+        "goal": "strength",
+        "history": [
+          {
+            "exercise": "Bench Press",
+            "weight": 80,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-12-01",
+            "notes": "Tough but manageable"
+          },
+          {
+            "exercise": "Bench Press",
+            "weight": 82.5,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 9,
+            "date": "2024-12-04",
+            "notes": "Very challenging"
+          },
+          {
+            "exercise": "Bench Press",
+            "weight": 82.5,
+            "sets": 3,
+            "reps": 4,
+            "rpe": 9,
+            "date": "2024-12-07",
+            "notes": "Failed last rep"
+          },
+          {
+            "exercise": "Bench Press",
+            "weight": 80,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 9,
+            "date": "2024-12-11",
+            "notes": "Still feeling fatigued"
+          }
+        ]
+      },
+      "expected_behavior": "Should detect overtraining and recommend deload (reduce weight 10-20%)"
+    },
+    {
+      "name": "Hypertrophy Focus - Volume Progression",
+      "input": {
+        "exercise": "Dumbbell Row",
+        "goal": "hypertrophy",
+        "history": [
+          {
+            "exercise": "Dumbbell Row",
+            "weight": 25,
+            "sets": 3,
+            "reps": 10,
+            "rpe": 6,
+            "date": "2024-12-01",
+            "notes": "Good pump"
+          },
+          {
+            "exercise": "Dumbbell Row",
+            "weight": 27.5,
+            "sets": 3,
+            "reps": 10,
+            "rpe": 7,
+            "date": "2024-12-05",
+            "notes": "Solid session"
+          },
+          {
+            "exercise": "Dumbbell Row",
+            "weight": 27.5,
+            "sets": 4,
+            "reps": 10,
+            "rpe": 7,
+            "date": "2024-12-09",
+            "notes": "Added a set"
+          },
+          {
+            "exercise": "Dumbbell Row",
+            "weight": 30,
+            "sets": 4,
+            "reps": 10,
+            "rpe": 8,
+            "date": "2024-12-13",
+            "notes": "Feeling stronger"
+          }
+        ]
+      },
+      "expected_behavior": "Should focus on volume (sets × reps) with 8-12 rep range for hypertrophy"
+    },
+    {
+      "name": "Endurance Goal - High Reps",
+      "input": {
+        "exercise": "Goblet Squat",
+        "goal": "endurance",
+        "history": [
+          {
+            "exercise": "Goblet Squat",
+            "weight": 16,
+            "sets": 3,
+            "reps": 15,
+            "rpe": 6,
+            "date": "2024-12-01",
+            "notes": "Breathing hard"
+          },
+          {
+            "exercise": "Goblet Squat",
+            "weight": 16,
+            "sets": 3,
+            "reps": 18,
+            "rpe": 7,
+            "date": "2024-12-05",
+            "notes": "Increased reps"
+          },
+          {
+            "exercise": "Goblet Squat",
+            "weight": 20,
+            "sets": 3,
+            "reps": 15,
+            "rpe": 7,
+            "date": "2024-12-09",
+            "notes": "Higher weight"
+          }
+        ]
+      },
+      "expected_behavior": "Should prioritize rep increases over weight, targeting 15+ reps"
+    },
+    {
+      "name": "Stalled Progress - Plateau",
+      "input": {
+        "exercise": "Overhead Press",
+        "goal": "strength",
+        "history": [
+          {
+            "exercise": "Overhead Press",
+            "weight": 50,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-11-20",
+            "notes": "Challenging"
+          },
+          {
+            "exercise": "Overhead Press",
+            "weight": 50,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-11-25",
+            "notes": "Same weight"
+          },
+          {
+            "exercise": "Overhead Press",
+            "weight": 50,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-11-30",
+            "notes": "Still stuck"
+          },
+          {
+            "exercise": "Overhead Press",
+            "weight": 52.5,
+            "sets": 3,
+            "reps": 4,
+            "rpe": 9,
+            "date": "2024-12-05",
+            "notes": "Failed progression"
+          },
+          {
+            "exercise": "Overhead Press",
+            "weight": 50,
+            "sets": 3,
+            "reps": 5,
+            "rpe": 8,
+            "date": "2024-12-10",
+            "notes": "Back to 50kg"
+          }
+        ]
+      },
+      "expected_behavior": "Should identify plateau and suggest alternative progression strategy (add reps first, then weight)"
+    },
+    {
+      "name": "Beginner - Rapid Gains",
+      "input": {
+        "exercise": "Push-up",
+        "goal": "strength",
+        "history": [
+          {
+            "exercise": "Push-up",
+            "weight": 0,
+            "sets": 3,
+            "reps": 8,
+            "rpe": 7,
+            "date": "2024-12-01",
+            "notes": "First time"
+          },
+          {
+            "exercise": "Push-up",
+            "weight": 0,
+            "sets": 3,
+            "reps": 10,
+            "rpe": 7,
+            "date": "2024-12-04",
+            "notes": "Felt easier"
+          },
+          {
+            "exercise": "Push-up",
+            "weight": 0,
+            "sets": 3,
+            "reps": 12,
+            "rpe": 7,
+            "date": "2024-12-07",
+            "notes": "Good progress"
+          }
+        ]
+      },
+      "expected_behavior": "Should recognize beginner gains pattern and encourage continued progression"
+    }
+  ],
+  "sample_exercises": [
+    "Barbell Squat",
+    "Bench Press",
+    "Deadlift",
+    "Overhead Press",
+    "Barbell Row",
+    "Pull-up",
+    "Dumbbell Row",
+    "Goblet Squat",
+    "Romanian Deadlift",
+    "Dumbbell Bench Press",
+    "Kettlebell Swing",
+    "Push-up",
+    "Dip",
+    "Chin-up",
+    "Leg Press"
+  ],
+  "progression_principles": {
+    "strength": {
+      "rep_range": "3-6 reps",
+      "typical_increment": "2.5-5kg",
+      "rest_periods": "3-5 minutes",
+      "progression_strategy": "Add weight when RPE < 8 for all sets"
+    },
+    "hypertrophy": {
+      "rep_range": "8-12 reps",
+      "typical_increment": "2.5kg or add reps/sets",
+      "rest_periods": "60-90 seconds",
+      "progression_strategy": "Increase volume (weight × sets × reps) by 5-10% weekly"
+    },
+    "endurance": {
+      "rep_range": "15+ reps",
+      "typical_increment": "Add reps first, then weight",
+      "rest_periods": "30-60 seconds",
+      "progression_strategy": "Progress reps to 20+, then increase weight"
+    }
+  },
+  "deload_indicators": [
+    "RPE consistently 9-10 across multiple sessions",
+    "Performance decline despite adequate recovery",
+    "Failed to complete target reps for 2+ sessions",
+    "Average RPE trending upward over 3+ weeks",
+    "Subjective feelings of excessive fatigue"
+  ]
+}

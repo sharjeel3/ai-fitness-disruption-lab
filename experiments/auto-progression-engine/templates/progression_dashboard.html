@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progression Analysis - {{ exercise }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 375px;
+            background: white;
+            border-radius: 40px;
+            padding: 25px 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        /* Phone notch */
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-top: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .header .exercise-name {
+            color: #4facfe;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .header .goal-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #e3f2fd;
+            color: #4facfe;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .chart-container h3 {
+            color: #4facfe;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .simple-chart {
+            height: 120px;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .chart-line {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 80px;
+            background: linear-gradient(to top, rgba(79, 172, 254, 0.1), transparent);
+            border-top: 3px solid #4facfe;
+            border-radius: 4px;
+        }
+
+        .chart-trend {
+            font-size: 2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4facfe;
+        }
+
+        .stat-unit {
+            font-size: 0.85rem;
+            color: #666;
+            margin-left: 3px;
+        }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .recommendation-box h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .next-workout {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .next-workout-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .next-workout-item {
+            text-align: center;
+        }
+
+        .next-workout-label {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .next-workout-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+
+        .progression-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .rationale-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .rationale-box h3 {
+            color: #856404;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rationale-box p {
+            color: #856404;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .deload-warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .deload-warning h3 {
+            color: #721c24;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .deload-warning p {
+            color: #721c24;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .tips-box {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .tips-box h3 {
+            color: #4facfe;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tip-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #4facfe;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .history-section {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .history-section h3 {
+            color: #4facfe;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .history-entry {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .history-date {
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .history-details {
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .history-notes {
+            color: #4facfe;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.8rem;
+        }
+
+        .btn-back {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: #4facfe;
+            border: 2px solid #4facfe;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            background: #4facfe;
+            color: white;
+        }
+
+        @media (max-width: 400px) {
+            .phone-frame {
+                border-radius: 20px;
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <h1>📈 Progression Analysis</h1>
+            <div class="exercise-name">{{ exercise }}</div>
+            <span class="goal-badge">{{ goal|upper }}</span>
+        </div>
+
+        <!-- Current Performance Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Current Weight</div>
+                <div class="stat-value">{{ recommendation.current_performance.weight }}<span class="stat-unit">kg</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Volume</div>
+                <div class="stat-value">{{ recommendation.current_performance.volume }}<span class="stat-unit">kg</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Last Sets × Reps</div>
+                <div class="stat-value">{{ recommendation.current_performance.sets }} × {{ recommendation.current_performance.reps }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Last RPE</div>
+                <div class="stat-value">{{ recommendation.current_performance.rpe }}<span class="stat-unit">/10</span></div>
+            </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="chart-container">
+            <h3>📊 Weight Progression</h3>
+            <div class="simple-chart">
+                <div class="chart-trend">
+                    {% if chart_data.weights[-1] > chart_data.weights[0] %}
+                    📈 Trending Up
+                    {% elif chart_data.weights[-1] < chart_data.weights[0] %}
+                    📉 Needs Adjustment
+                    {% else %}
+                    ➡️ Maintaining
+                    {% endif %}
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #666;">
+                <span>Start: {{ chart_data.weights[0] }}kg</span>
+                <span>Current: {{ chart_data.weights[-1] }}kg</span>
+            </div>
+        </div>
+
+        <!-- Deload Warning -->
+        {% if recommendation.deload_suggested %}
+        <div class="deload-warning">
+            <h3>⚠️ Deload Recommended</h3>
+            <p>Your body needs recovery. Consider reducing load this session to prevent overtraining.</p>
+        </div>
+        {% endif %}
+
+        <!-- Next Session Recommendation -->
+        <div class="recommendation-box">
+            <h3>🎯 Next Session Recommendation</h3>
+            <span class="progression-badge">{{ recommendation.progression_rate|upper }}</span>
+            
+            <div class="next-workout">
+                <div class="next-workout-grid">
+                    <div class="next-workout-item">
+                        <div class="next-workout-label">Weight</div>
+                        <div class="next-workout-value">{{ recommendation.recommended_next.weight }}</div>
+                    </div>
+                    <div class="next-workout-item">
+                        <div class="next-workout-label">Sets</div>
+                        <div class="next-workout-value">{{ recommendation.recommended_next.sets }}</div>
+                    </div>
+                    <div class="next-workout-item">
+                        <div class="next-workout-label">Reps</div>
+                        <div class="next-workout-value">{{ recommendation.recommended_next.reps }}</div>
+                    </div>
+                    <div class="next-workout-item">
+                        <div class="next-workout-label">Target RPE</div>
+                        <div class="next-workout-value">{{ recommendation.recommended_next.target_rpe }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rationale -->
+        <div class="rationale-box">
+            <h3>💡 Why This Progression?</h3>
+            <p>{{ recommendation.rationale }}</p>
+        </div>
+
+        <!-- Coaching Tips -->
+        <div class="tips-box">
+            <h3>🎓 Coaching Tips</h3>
+            {% for tip in recommendation.tips %}
+            <div class="tip-item">{{ tip }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Workout History -->
+        <div class="history-section">
+            <h3>📅 Recent History</h3>
+            {% for entry in history[-5:] %}
+            <div class="history-entry">
+                <div class="history-date">{{ entry.date }}</div>
+                <div class="history-details">
+                    <span>{{ entry.sets }}×{{ entry.reps }} @ {{ entry.weight }}kg</span>
+                    <span>RPE: {{ entry.rpe }}/10</span>
+                </div>
+                {% if entry.notes %}
+                <div class="history-notes">💬 {{ entry.notes }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/" class="btn-back">← Log New Workout</a>
+    </div>
+</body>
+</html>

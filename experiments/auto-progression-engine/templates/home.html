@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Progression Engine (APE)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .workout-entries {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .workout-entry {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .entry-number {
+            font-weight: 700;
+            color: #4facfe;
+            font-size: 1.1rem;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: #c82333;
+        }
+
+        .entry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #4facfe;
+            border: 2px solid #4facfe;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #4facfe;
+            color: white;
+        }
+
+        .btn-demo {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #4facfe;
+            border: 2px solid #4facfe;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-demo:hover {
+            background: #4facfe;
+            color: white;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #4facfe;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .small-label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .entry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 Auto-Progression Engine</h1>
+            <p>Track your workouts and get AI-powered progression recommendations</p>
+        </div>
+
+        <div class="form-card">
+            <form id="progressionForm">
+                <div class="form-group">
+                    <label for="exercise">Exercise Name</label>
+                    <input type="text" id="exercise" name="exercise" placeholder="e.g., Barbell Squat" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">Training Goal</label>
+                    <select id="goal" name="goal" required>
+                        <option value="">Select your goal...</option>
+                        <option value="strength">Strength (3-6 reps)</option>
+                        <option value="hypertrophy">Hypertrophy (8-12 reps)</option>
+                        <option value="endurance">Endurance (15+ reps)</option>
+                    </select>
+                </div>
+
+                <div class="workout-entries">
+                    <h3 style="margin-bottom: 15px; color: #333;">Workout History (minimum 2 entries)</h3>
+                    
+                    <div id="entriesContainer">
+                        <!-- Entry 1 -->
+                        <div class="workout-entry">
+                            <div class="entry-header">
+                                <span class="entry-number">Session 1</span>
+                            </div>
+                            <div class="entry-grid">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" name="entry_date[]" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" name="entry_weight[]" step="0.5" min="0" placeholder="60" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sets</label>
+                                    <input type="number" name="entry_sets[]" min="1" max="10" placeholder="3" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Reps</label>
+                                    <input type="number" name="entry_reps[]" min="1" max="50" placeholder="10" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>RPE (1-10)</label>
+                                    <input type="number" name="entry_rpe[]" min="1" max="10" placeholder="7" required>
+                                    <div class="small-label">Rate of Perceived Exertion</div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label>Notes (optional)</label>
+                                <input type="text" name="entry_notes[]" placeholder="How did it feel?">
+                            </div>
+                        </div>
+
+                        <!-- Entry 2 -->
+                        <div class="workout-entry">
+                            <div class="entry-header">
+                                <span class="entry-number">Session 2</span>
+                            </div>
+                            <div class="entry-grid">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" name="entry_date[]" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" name="entry_weight[]" step="0.5" min="0" placeholder="62.5" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sets</label>
+                                    <input type="number" name="entry_sets[]" min="1" max="10" placeholder="3" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Reps</label>
+                                    <input type="number" name="entry_reps[]" min="1" max="50" placeholder="10" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>RPE (1-10)</label>
+                                    <input type="number" name="entry_rpe[]" min="1" max="10" placeholder="7" required>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label>Notes (optional)</label>
+                                <input type="text" name="entry_notes[]" placeholder="How did it feel?">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-secondary" onclick="addEntry()">+ Add Another Session</button>
+                </div>
+
+                <button type="submit" class="btn-primary">Analyze Progression 📊</button>
+
+                <div style="margin-top: 15px;">
+                    <a href="/demo" class="btn-demo">View Demo Analysis</a>
+                </div>
+            </form>
+
+            <div class="info-box">
+                <p><strong>How it works:</strong> Our AI analyzes your workout history to identify progression patterns, evaluate fatigue management, and recommend your next training session based on scientific principles and your training goal.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let entryCount = 2;
+
+        function addEntry() {
+            entryCount++;
+            const container = document.getElementById('entriesContainer');
+            
+            const entryDiv = document.createElement('div');
+            entryDiv.className = 'workout-entry';
+            entryDiv.innerHTML = `
+                <div class="entry-header">
+                    <span class="entry-number">Session ${entryCount}</span>
+                    <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                </div>
+                <div class="entry-grid">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="entry_date[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Weight (kg)</label>
+                        <input type="number" name="entry_weight[]" step="0.5" min="0" placeholder="65" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sets</label>
+                        <input type="number" name="entry_sets[]" min="1" max="10" placeholder="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Reps</label>
+                        <input type="number" name="entry_reps[]" min="1" max="50" placeholder="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label>RPE (1-10)</label>
+                        <input type="number" name="entry_rpe[]" min="1" max="10" placeholder="7" required>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>Notes (optional)</label>
+                    <input type="text" name="entry_notes[]" placeholder="How did it feel?">
+                </div>
+            `;
+            
+            container.appendChild(entryDiv);
+        }
+
+        function removeEntry(button) {
+            if (document.querySelectorAll('.workout-entry').length > 2) {
+                button.closest('.workout-entry').remove();
+                entryCount--;
+                updateEntryNumbers();
+            } else {
+                alert('You must have at least 2 workout entries');
+            }
+        }
+
+        function updateEntryNumbers() {
+            const entries = document.querySelectorAll('.workout-entry');
+            entries.forEach((entry, index) => {
+                entry.querySelector('.entry-number').textContent = `Session ${index + 1}`;
+            });
+        }
+
+        // Form submission handling
+        document.getElementById('progressionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Build history array
+            const dates = formData.getAll('entry_date[]');
+            const weights = formData.getAll('entry_weight[]');
+            const sets = formData.getAll('entry_sets[]');
+            const reps = formData.getAll('entry_reps[]');
+            const rpes = formData.getAll('entry_rpe[]');
+            const notes = formData.getAll('entry_notes[]');
+            
+            const history = dates.map((date, index) => ({
+                exercise: formData.get('exercise'),
+                weight: parseFloat(weights[index]),
+                sets: parseInt(sets[index]),
+                reps: parseInt(reps[index]),
+                rpe: parseInt(rpes[index]),
+                date: date,
+                notes: notes[index] || null
+            }));
+
+            const data = {
+                exercise: formData.get('exercise'),
+                goal: formData.get('goal'),
+                history: history
+            };
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const html = await response.text();
+                    document.open();
+                    document.write(html);
+                    document.close();
+                } else {
+                    alert('Error analyzing progression. Please check your data and try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please check your connection.');
+            }
+        });
+
+        // Set default date to today for first two entries
+        const today = new Date().toISOString().split('T')[0];
+        const yesterday = new Date(Date.now() - 86400000 * 3).toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]')[0].value = yesterday;
+        document.querySelectorAll('input[type="date"]')[1].value = today;
+    </script>
+</body>
+</html>
