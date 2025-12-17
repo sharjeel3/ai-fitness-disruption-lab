@@ -1,0 +1,166 @@
+{
+  "test_cases": [
+    {
+      "name": "Anxious with Low Energy",
+      "input": {
+        "mood": "anxious",
+        "energy": 3,
+        "stress": 7
+      },
+      "expected": {
+        "intensity": "low",
+        "coaching_tone": "grounding",
+        "workout_types": ["yoga", "stretching", "walking", "breathwork"]
+      }
+    },
+    {
+      "name": "Energetic and Ready",
+      "input": {
+        "mood": "energetic",
+        "energy": 9,
+        "stress": 2
+      },
+      "expected": {
+        "intensity": "high",
+        "coaching_tone": "motivating",
+        "workout_types": ["HIIT", "strength", "running", "circuit_training"]
+      }
+    },
+    {
+      "name": "Tired and Drained",
+      "input": {
+        "mood": "tired",
+        "energy": 2,
+        "stress": 3
+      },
+      "expected": {
+        "intensity": "low",
+        "coaching_tone": "supportive",
+        "workout_types": ["gentle_yoga", "walking", "mobility", "stretching"]
+      }
+    },
+    {
+      "name": "Motivated Mid-Energy",
+      "input": {
+        "mood": "motivated",
+        "energy": 7,
+        "stress": 4
+      },
+      "expected": {
+        "intensity": "moderate-high",
+        "coaching_tone": "encouraging",
+        "workout_types": ["strength", "cardio", "functional_training"]
+      }
+    },
+    {
+      "name": "Frustrated and Stressed",
+      "input": {
+        "mood": "frustrated",
+        "energy": 6,
+        "stress": 8
+      },
+      "expected": {
+        "intensity": "moderate",
+        "coaching_tone": "empowering",
+        "workout_types": ["boxing", "HIIT", "running", "kettlebell"]
+      }
+    },
+    {
+      "name": "Sad and Low",
+      "input": {
+        "mood": "sad",
+        "energy": 4,
+        "stress": 6
+      },
+      "expected": {
+        "intensity": "low-moderate",
+        "coaching_tone": "compassionate",
+        "workout_types": ["walking", "gentle_yoga", "dancing", "light_cardio"]
+      }
+    },
+    {
+      "name": "Overwhelmed and Maxed Out",
+      "input": {
+        "mood": "overwhelmed",
+        "energy": 4,
+        "stress": 9
+      },
+      "expected": {
+        "intensity": "low",
+        "coaching_tone": "calming",
+        "workout_types": ["breathwork", "restorative_yoga", "stretching", "meditation"]
+      }
+    },
+    {
+      "name": "Confident and Strong",
+      "input": {
+        "mood": "confident",
+        "energy": 9,
+        "stress": 3
+      },
+      "expected": {
+        "intensity": "high",
+        "coaching_tone": "bold",
+        "workout_types": ["PR_attempts", "challenging_lifts", "advanced_training"]
+      }
+    },
+    {
+      "name": "Restless Energy",
+      "input": {
+        "mood": "restless",
+        "energy": 7,
+        "stress": 5
+      },
+      "expected": {
+        "intensity": "moderate-high",
+        "coaching_tone": "channeling",
+        "workout_types": ["cardio", "dynamic_movement", "sports_drills"]
+      }
+    },
+    {
+      "name": "Content and Balanced",
+      "input": {
+        "mood": "content",
+        "energy": 6,
+        "stress": 3
+      },
+      "expected": {
+        "intensity": "moderate",
+        "coaching_tone": "steady",
+        "workout_types": ["balanced_session", "yoga_strength_blend", "functional_training"]
+      }
+    },
+    {
+      "name": "Excited and Pumped",
+      "input": {
+        "mood": "excited",
+        "energy": 9,
+        "stress": 2
+      },
+      "expected": {
+        "intensity": "high",
+        "coaching_tone": "enthusiastic",
+        "workout_types": ["fun_cardio", "dance", "group_fitness", "challenging_circuits"]
+      }
+    },
+    {
+      "name": "Neutral Baseline",
+      "input": {
+        "mood": "neutral",
+        "energy": 5,
+        "stress": 4
+      },
+      "expected": {
+        "intensity": "moderate",
+        "coaching_tone": "professional",
+        "workout_types": ["standard_routine", "maintenance_training"]
+      }
+    }
+  ],
+  "quick_tests": [
+    {"mood": "anxious", "energy": 3, "stress": 7},
+    {"mood": "energetic", "energy": 9, "stress": 2},
+    {"mood": "tired", "energy": 2, "stress": 3},
+    {"mood": "confident", "energy": 8, "stress": 3}
+  ]
+}

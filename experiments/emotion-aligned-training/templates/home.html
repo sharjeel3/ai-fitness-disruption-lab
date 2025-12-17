@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion-Aligned Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 375px;
+            width: 100%;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            background: white;
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            padding: 0;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .range-value {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4px;
+            font-size: 11px;
+            color: #999;
+        }
+
+        .current-value {
+            font-weight: 700;
+            font-size: 18px;
+            color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .mood-emoji {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .demo-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .demo-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .demo-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Emotion-Aligned Training</h1>
+            <p>Your workout, matched to how you feel</p>
+        </div>
+
+        <div class="content">
+            <div class="mood-emoji">😊</div>
+
+            <form action="/generate" method="post" id="emotionForm">
+                <div class="form-group">
+                    <label for="mood">How are you feeling?</label>
+                    <select id="mood" name="mood" required>
+                        <option value="">Select your mood...</option>
+                        {% for mood in valid_moods %}
+                        <option value="{{ mood }}">{{ mood.title() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="energy">Energy Level</label>
+                    <input type="range" id="energy" name="energy" min="1" max="10" value="5" required>
+                    <div class="range-value">
+                        <div class="range-labels">
+                            <span>Exhausted</span>
+                            <span>Energized</span>
+                        </div>
+                        <div class="current-value"><span id="energyValue">5</span>/10</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="stress">Stress Level</label>
+                    <input type="range" id="stress" name="stress" min="1" max="10" value="5" required>
+                    <div class="range-value">
+                        <div class="range-labels">
+                            <span>Calm</span>
+                            <span>Overwhelmed</span>
+                        </div>
+                        <div class="current-value"><span id="stressValue">5</span>/10</div>
+                    </div>
+                </div>
+
+                <button type="submit">Get My Workout 🎯</button>
+            </form>
+
+            <div class="demo-link">
+                <a href="/demo">View Demo (Anxious Example)</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update energy value display
+        const energySlider = document.getElementById('energy');
+        const energyValue = document.getElementById('energyValue');
+        energySlider.addEventListener('input', function() {
+            energyValue.textContent = this.value;
+        });
+
+        // Update stress value display
+        const stressSlider = document.getElementById('stress');
+        const stressValue = document.getElementById('stressValue');
+        stressSlider.addEventListener('input', function() {
+            stressValue.textContent = this.value;
+        });
+
+        // Update emoji based on mood selection
+        const moodSelect = document.getElementById('mood');
+        const moodEmoji = document.querySelector('.mood-emoji');
+        const moodEmojis = {
+            'anxious': '😰',
+            'energetic': '⚡',
+            'tired': '😴',
+            'motivated': '💪',
+            'frustrated': '😤',
+            'sad': '😢',
+            'overwhelmed': '😵',
+            'confident': '😎',
+            'restless': '😬',
+            'content': '😊',
+            'excited': '🤩',
+            'neutral': '😐'
+        };
+
+        moodSelect.addEventListener('change', function() {
+            moodEmoji.textContent = moodEmojis[this.value] || '😊';
+        });
+
+        // Handle form submission
+        document.getElementById('emotionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                mood: document.getElementById('mood').value,
+                energy: parseInt(document.getElementById('energy').value),
+                stress: parseInt(document.getElementById('stress').value)
+            };
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    const html = await response.text();
+                    document.open();
+                    document.write(html);
+                    document.close();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
