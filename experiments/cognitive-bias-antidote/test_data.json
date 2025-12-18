@@ -1,0 +1,199 @@
+{
+  "test_thoughts": [
+    {
+      "thought": "I missed one workout so this whole week is pointless",
+      "context": "Started a new program 2 weeks ago, had to work late yesterday",
+      "expected_bias": "all-or-nothing",
+      "user_history": {
+        "workouts_completed": 10,
+        "current_streak": 0,
+        "longest_streak": 7,
+        "program_start_date": "2025-12-01"
+      }
+    },
+    {
+      "thought": "Everyone else at the gym is so much stronger than me",
+      "context": "Just joined a gym for the first time",
+      "expected_bias": "comparison_trap",
+      "user_history": {
+        "workouts_completed": 3,
+        "gym_experience": "beginner",
+        "program_start_date": "2025-12-10"
+      }
+    },
+    {
+      "thought": "I'll never get fit, I'm too far behind",
+      "context": "Tried to do a workout video and couldn't complete it",
+      "expected_bias": "catastrophizing",
+      "user_history": {
+        "workouts_completed": 2,
+        "current_streak": 2,
+        "fitness_level": "beginner"
+      }
+    },
+    {
+      "thought": "I'll start my workout plan on Monday",
+      "context": "It's Thursday and I haven't worked out this week",
+      "expected_bias": "future_discounting",
+      "user_history": {
+        "planned_start_dates": ["2025-11-25", "2025-12-02", "2025-12-09"],
+        "workouts_completed": 0
+      }
+    },
+    {
+      "thought": "I don't look like someone who works out, I don't belong here",
+      "context": "At the gym for the 4th time",
+      "expected_bias": "impostor_syndrome",
+      "user_history": {
+        "workouts_completed": 4,
+        "current_streak": 3,
+        "gym_visits": 4
+      }
+    },
+    {
+      "thought": "I need the perfect gym setup before I can start working out",
+      "context": "Researching equipment for 3 weeks",
+      "expected_bias": "perfectionism_paralysis",
+      "user_history": {
+        "workouts_completed": 0,
+        "research_time_days": 21,
+        "equipment_researched": ["dumbbells", "bench", "barbell", "rack", "mat"]
+      }
+    },
+    {
+      "thought": "I'm just not athletic, I never will be",
+      "context": "Struggled with a beginner HIIT workout",
+      "expected_bias": "fixed_mindset",
+      "user_history": {
+        "workouts_completed": 5,
+        "sports_background": "none",
+        "current_fitness_level": "beginner"
+      }
+    },
+    {
+      "thought": "I feel weak so I must be weak",
+      "context": "Tired after a long workday",
+      "expected_bias": "emotional_reasoning",
+      "user_history": {
+        "workouts_completed": 15,
+        "prs": {"squat": 135, "bench": 95, "deadlift": 185},
+        "current_energy": 3,
+        "sleep_last_night": 5
+      }
+    },
+    {
+      "thought": "If I can't do the full workout, why bother",
+      "context": "Only have 20 minutes today instead of the planned 45",
+      "expected_bias": "all-or-nothing",
+      "user_history": {
+        "workouts_completed": 20,
+        "current_streak": 12,
+        "typical_workout_duration": 45
+      }
+    },
+    {
+      "thought": "I ate dessert, my entire diet is ruined",
+      "context": "Had ice cream after dinner with family",
+      "expected_bias": "all-or-nothing",
+      "user_history": {
+        "diet_adherence_days": 14,
+        "current_nutrition_streak": 0,
+        "weight_loss_progress": -5
+      }
+    },
+    {
+      "thought": "I'm too old to start getting fit now",
+      "context": "45 years old, never exercised regularly",
+      "expected_bias": "fixed_mindset",
+      "user_history": {
+        "age": 45,
+        "workouts_completed": 1,
+        "health_markers": "good"
+      }
+    },
+    {
+      "thought": "I'm too tired to workout right now",
+      "context": "Just finished work, sitting on couch",
+      "expected_bias": "future_discounting",
+      "user_history": {
+        "workouts_completed": 8,
+        "current_streak": 0,
+        "last_workout": "2 days ago",
+        "energy_level": 4
+      }
+    },
+    {
+      "thought": "My form has to be perfect or I shouldn't do it at all",
+      "context": "Watching technique videos for 2 hours",
+      "expected_bias": "perfectionism_paralysis",
+      "user_history": {
+        "workouts_completed": 2,
+        "videos_watched": 25,
+        "technique_research_hours": 10
+      }
+    },
+    {
+      "thought": "Why is everyone else progressing faster than me",
+      "context": "Seeing friends' workout posts on social media",
+      "expected_bias": "comparison_trap",
+      "user_history": {
+        "workouts_completed": 25,
+        "current_streak": 8,
+        "strength_gains_percentage": 15,
+        "social_media_time_daily": 90
+      }
+    },
+    {
+      "thought": "This injury means I can never workout again",
+      "context": "Minor shoulder strain from overhead press",
+      "expected_bias": "catastrophizing",
+      "user_history": {
+        "workouts_completed": 30,
+        "injury_type": "minor strain",
+        "doctor_clearance": "rest 1 week, modify exercises"
+      }
+    }
+  ],
+  "edge_cases": [
+    {
+      "thought": "I love working out and feel great about my progress!",
+      "context": "Positive self-talk test",
+      "expected_result": "no_bias_detected",
+      "expected_response": "supportive_encouragement"
+    },
+    {
+      "thought": "I'm going to try my best today",
+      "context": "Neutral/healthy mindset test",
+      "expected_result": "no_bias_detected",
+      "expected_response": "positive_reinforcement"
+    },
+    {
+      "thought": "I'm feeling sore from yesterday's workout, so I'll do some light stretching today",
+      "context": "Healthy adaptation test",
+      "expected_result": "no_bias_detected",
+      "expected_response": "affirm_good_decision"
+    }
+  ],
+  "multi_bias_examples": [
+    {
+      "thought": "I'm too old and too far behind, I'll never catch up. Everyone else started when they were young.",
+      "context": "50 years old, comparing to 20-somethings at gym",
+      "expected_biases": ["fixed_mindset", "catastrophizing", "comparison_trap"],
+      "user_history": {
+        "age": 50,
+        "workouts_completed": 5,
+        "gym_visits": 5
+      }
+    },
+    {
+      "thought": "I don't feel like working out today, and if I can't do the full hour, there's no point anyway",
+      "context": "Tired after work, planned 60-minute session",
+      "expected_biases": ["emotional_reasoning", "all-or-nothing"],
+      "user_history": {
+        "workouts_completed": 15,
+        "current_streak": 4,
+        "energy_level": 3
+      }
+    }
+  ]
+}
