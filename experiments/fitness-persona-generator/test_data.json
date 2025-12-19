@@ -1,0 +1,146 @@
+{
+  "test_cases": [
+    {
+      "name": "The Precision Phoenix (Disciplined Strength)",
+      "input": {
+        "traits": ["disciplined", "analytical", "consistent"],
+        "goals": ["strength", "lean"],
+        "music_preference": "instrumental",
+        "workout_style": "controlled intensity",
+        "session_length_preference": 45
+      },
+      "expected_archetype": "The Precision Phoenix"
+    },
+    {
+      "name": "The Warrior Spirit (Competitive Power)",
+      "input": {
+        "traits": ["determined", "competitive", "bold"],
+        "goals": ["strength", "power"],
+        "music_preference": "rock",
+        "workout_style": "high intensity",
+        "session_length_preference": 60
+      },
+      "expected_archetype": "The Warrior Spirit"
+    },
+    {
+      "name": "The Balanced Flow (Mindful Wellness)",
+      "input": {
+        "traits": ["mindful", "patient", "holistic"],
+        "goals": ["flexibility", "wellness"],
+        "music_preference": "ambient",
+        "workout_style": "gentle progression",
+        "session_length_preference": 30
+      },
+      "expected_archetype": "The Balanced Flow"
+    },
+    {
+      "name": "The Adventure Seeker (Fun Endurance)",
+      "input": {
+        "traits": ["creative", "spontaneous", "energetic"],
+        "goals": ["endurance", "fun"],
+        "music_preference": "pop",
+        "workout_style": "varied and dynamic",
+        "session_length_preference": 40
+      },
+      "expected_archetype": "The Adventure Seeker"
+    },
+    {
+      "name": "Custom Hybrid (Creative Strength)",
+      "input": {
+        "traits": ["creative", "disciplined", "ambitious"],
+        "goals": ["strength", "flexibility"],
+        "music_preference": "electronic",
+        "workout_style": null,
+        "session_length_preference": null
+      },
+      "expected_archetype": null,
+      "note": "Should create unique hybrid persona"
+    },
+    {
+      "name": "Minimal Input (Defaults)",
+      "input": {
+        "traits": ["energetic"],
+        "goals": ["wellness"],
+        "music_preference": "pop"
+      },
+      "note": "Should work with minimal required fields"
+    },
+    {
+      "name": "Multi-Goal Persona",
+      "input": {
+        "traits": ["determined", "analytical", "patient"],
+        "goals": ["strength", "endurance", "flexibility"],
+        "music_preference": "instrumental",
+        "workout_style": "balanced approach",
+        "session_length_preference": 50
+      },
+      "note": "Should balance multiple goals in persona"
+    },
+    {
+      "name": "Social Fitness Enthusiast",
+      "input": {
+        "traits": ["outgoing", "competitive", "motivated"],
+        "goals": ["fun", "endurance"],
+        "music_preference": "hip-hop",
+        "workout_style": "group-focused",
+        "session_length_preference": 45
+      },
+      "note": "Social and community-oriented persona"
+    }
+  ],
+  "trait_library": [
+    "disciplined",
+    "analytical",
+    "consistent",
+    "determined",
+    "competitive",
+    "bold",
+    "mindful",
+    "patient",
+    "holistic",
+    "creative",
+    "spontaneous",
+    "energetic",
+    "ambitious",
+    "focused",
+    "resilient",
+    "curious",
+    "adventurous",
+    "systematic",
+    "driven",
+    "calm",
+    "passionate",
+    "methodical",
+    "flexible",
+    "persistent",
+    "optimistic"
+  ],
+  "goal_library": [
+    "strength",
+    "lean",
+    "power",
+    "flexibility",
+    "wellness",
+    "endurance",
+    "fun",
+    "muscle",
+    "tone",
+    "cardio",
+    "balance",
+    "mobility",
+    "athleticism",
+    "performance"
+  ],
+  "music_genres": [
+    "pop",
+    "rock",
+    "instrumental",
+    "ambient",
+    "electronic",
+    "hip-hop",
+    "classical",
+    "jazz",
+    "indie",
+    "edm"
+  ]
+}

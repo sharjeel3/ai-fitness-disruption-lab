@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ persona.persona_name }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, {{ persona.color_palette[0] }} 0%, {{ persona.color_palette[1] }} 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .phone-frame {
+            width: 375px;
+            background: white;
+            border-radius: 40px;
+            padding: 0;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        
+        .persona-header {
+            background: linear-gradient(135deg, {{ persona.color_palette[0] }} 0%, {{ persona.color_palette[1] }} 100%);
+            padding: 40px 24px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .persona-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .persona-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .persona-tagline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .persona-body {
+            padding: 24px;
+        }
+        
+        .section {
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 16px;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, {{ persona.color_palette[0] }}15 0%, {{ persona.color_palette[1] }}15 100%);
+            border-left: 4px solid {{ persona.color_palette[0] }};
+            padding: 16px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 32px;
+            color: {{ persona.color_palette[0] }};
+            font-weight: bold;
+            line-height: 0;
+            position: relative;
+            top: 8px;
+        }
+        
+        .trait-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .trait-tag {
+            background: #f0f0f0;
+            color: #555;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .goal-tag {
+            background: linear-gradient(135deg, {{ persona.color_palette[0] }}20 0%, {{ persona.color_palette[1] }}20 100%);
+            color: {{ persona.color_palette[0] }};
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: {{ persona.color_palette[0] }};
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .archetype-badge {
+            background: rgba(0,0,0,0.1);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, {{ persona.color_palette[0] }} 0%, {{ persona.color_palette[1] }} 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px {{ persona.color_palette[0] }}40;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: {{ persona.color_palette[0] }};
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .emoji-icon {
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="persona-header">
+            <div class="persona-icon">
+                <span class="emoji-icon">🔥</span>
+            </div>
+            <h1 class="persona-name">{{ persona.persona_name }}</h1>
+            <p class="persona-tagline">{{ persona.tagline }}</p>
+            {% if persona.archetype_match %}
+            <div class="archetype-badge">Based on: {{ persona.archetype_match }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="persona-body">
+            <div class="section">
+                <h2 class="section-title">Your Identity</h2>
+                <p class="description">{{ persona.description }}</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Motivation</h2>
+                <div class="quote-box">
+                    {{ persona.motivation_quote }}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Personality Traits</h2>
+                <div class="trait-tags">
+                    {% for trait in persona.traits %}
+                    <span class="trait-tag">{{ trait }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Fitness Goals</h2>
+                <div class="trait-tags">
+                    {% for goal in persona.goals %}
+                    <span class="goal-tag">🎯 {{ goal }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Training Profile</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">{{ persona.ideal_session_length }}</div>
+                        <div class="stat-label">Minutes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{ persona.recovery_priority|upper }}</div>
+                        <div class="stat-label">Recovery</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Training Details</h2>
+                <div class="info-row">
+                    <span class="info-label">Style</span>
+                    <span class="info-value">{{ persona.style }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Approach</span>
+                    <span class="info-value">{{ persona.workout_approach }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Music</span>
+                    <span class="info-value">🎵 {{ persona.music_preference }}</span>
+                </div>
+            </div>
+            
+            <button class="cta-button" onclick="window.print()">📸 Save Your Persona</button>
+            <a href="/" class="back-link">← Create Another Persona</a>
+        </div>
+    </div>
+</body>
+</html>

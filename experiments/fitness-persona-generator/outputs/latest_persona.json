@@ -1,0 +1,25 @@
+{
+  "persona_name": "The Kinetic Alchemist",
+  "archetype_match": null,
+  "style": "varied hybrid",
+  "tagline": "Create. Transform. Conquer.",
+  "traits": [
+    "creative",
+    "mindful",
+    "resourceful"
+  ],
+  "goals": [
+    "strength",
+    "power"
+  ],
+  "color_palette": [
+    "#BE95C4",
+    "#774DD0"
+  ],
+  "music_preference": "electronic",
+  "workout_approach": "creative_strength_fusion",
+  "ideal_session_length": 30,
+  "recovery_priority": "medium",
+  "description": "The Kinetic Alchemist blends mindful movement with strength training, turning limitations into opportunities. Channeling creativity, this persona crafts unique workouts that transform the body and mind, achieving power through inventive self-expression.",
+  "motivation_quote": "Forge strength from stillness; sculpt power from flow."
+}
