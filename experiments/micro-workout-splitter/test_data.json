@@ -1,0 +1,81 @@
+{
+  "sample_workouts": [
+    {
+      "name": "Full Body Strength",
+      "total_duration": 45,
+      "exercises": [
+        {
+          "name": "Warm-up Dynamic Stretches",
+          "duration": 5,
+          "category": "mobility",
+          "priority": "high"
+        },
+        {
+          "name": "Goblet Squats",
+          "sets": 3,
+          "reps": "12",
+          "rest": 60,
+          "duration": 7,
+          "category": "strength",
+          "priority": "high"
+        },
+        {
+          "name": "Push-ups",
+          "sets": 3,
+          "reps": "10-12",
+          "rest": 60,
+          "duration": 6,
+          "category": "strength",
+          "priority": "high"
+        },
+        {
+          "name": "Dumbbell Rows",
+          "sets": 3,
+          "reps": "12",
+          "rest": 60,
+          "duration": 7,
+          "category": "strength",
+          "priority": "high"
+        },
+        {
+          "name": "Plank Hold",
+          "sets": 3,
+          "duration_per_set": "30s",
+          "rest": 30,
+          "duration": 4,
+          "category": "core",
+          "priority": "medium"
+        },
+        {
+          "name": "Lunges",
+          "sets": 3,
+          "reps": "10 each leg",
+          "rest": 60,
+          "duration": 8,
+          "category": "strength",
+          "priority": "medium"
+        },
+        {
+          "name": "Cool-down Stretches",
+          "duration": 8,
+          "category": "mobility",
+          "priority": "medium"
+        }
+      ]
+    }
+  ],
+  "sample_time_blocks": [
+    {
+      "scenario": "Busy parent with 3 kids",
+      "available_blocks": [10, 8, 12, 6]
+    },
+    {
+      "scenario": "Office worker with meetings",
+      "available_blocks": [15, 10, 8]
+    },
+    {
+      "scenario": "Shift worker with irregular schedule",
+      "available_blocks": [20, 5, 8, 7]
+    }
+  ]
+}

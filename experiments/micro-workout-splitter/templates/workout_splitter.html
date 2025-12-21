@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Split Workout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .phone-frame {
+            background: white;
+            border-radius: 40px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: black;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .header .emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #a8edea 0%, #8dd6d2 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .summary-card .stat {
+            display: inline-block;
+            margin: 0 12px;
+        }
+
+        .summary-card .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .summary-card .stat-label {
+            font-size: 12px;
+            color: #1a1a1a;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scenario-badge {
+            display: inline-block;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #666;
+            margin: 10px 0 20px;
+        }
+
+        .timeline {
+            margin: 20px 0;
+        }
+
+        .segment {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+            border-left: 4px solid #a8edea;
+        }
+
+        .segment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .segment-number {
+            background: linear-gradient(135deg, #a8edea 0%, #8dd6d2 100%);
+            color: #1a1a1a;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .segment-time {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .segment-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 8px 0;
+        }
+
+        .segment-timing {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .segment-focus {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .exercise-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .exercise-name {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .exercise-duration {
+            font-size: 13px;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        .exercise-details {
+            font-size: 12px;
+            color: #999;
+            margin-left: 22px;
+        }
+
+        .rationale {
+            background: white;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+
+        .rationale:before {
+            content: "💡 ";
+        }
+
+        .ai-insights {
+            background: #fff3cd;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .ai-insights h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .ai-insights p {
+            font-size: 13px;
+            color: #856404;
+            line-height: 1.5;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .back-button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            color: #666;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+
+        .back-button:hover {
+            border-color: #a8edea;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="phone-frame">
+            <div class="notch"></div>
+            
+            <div class="header">
+                <div class="emoji">✨</div>
+                <h1>Your Personalized Split</h1>
+                <div class="scenario-badge">{{ scenario }}</div>
+            </div>
+
+            <div class="summary-card">
+                <div class="stat">
+                    <div class="stat-value">{{ result.segments|length }}</div>
+                    <div class="stat-label">Segments</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">{{ result.total_time }}</div>
+                    <div class="stat-label">Total Min</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">{{ result.coverage_percentage|int }}%</div>
+                    <div class="stat-label">Coverage</div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #a8edea;"></div>
+                    <span>Mobility</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #667eea;"></div>
+                    <span>Strength</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fa709a;"></div>
+                    <span>Cardio</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #43e97b;"></div>
+                    <span>Core</span>
+                </div>
+            </div>
+
+            <div class="timeline">
+                {% for segment in result.segments %}
+                <div class="segment">
+                    <div class="segment-header">
+                        <div class="segment-number">{{ segment.block_number }}</div>
+                        <div class="segment-time">{{ segment.duration }} min</div>
+                    </div>
+                    
+                    <div class="segment-title">{{ segment.focus }}</div>
+                    <div class="segment-timing">⏰ {{ segment.completion_time }}</div>
+                    
+                    <ul class="exercise-list">
+                        {% for exercise in segment.exercises %}
+                        <li class="exercise-item">
+                            <div class="exercise-dot" style="background: {% if exercise.category == 'mobility' %}#a8edea{% elif exercise.category == 'strength' %}#667eea{% elif exercise.category == 'cardio' %}#fa709a{% else %}#43e97b{% endif %};"></div>
+                            <div class="exercise-name">{{ exercise.name }}</div>
+                            <div class="exercise-duration">{{ exercise.duration }}m</div>
+                        </li>
+                        {% if exercise.sets %}
+                        <div class="exercise-details">
+                            {{ exercise.sets }} sets × {{ exercise.reps }}
+                            {% if exercise.rest %} • {{ exercise.rest }}s rest{% endif %}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    
+                    <div class="rationale">{{ segment.rationale }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="ai-insights">
+                <h3>🤖 AI Strategy Summary</h3>
+                <p>{{ result.ai_insights }}</p>
+            </div>
+
+            <a href="/" class="back-button">← Create Another Split</a>
+        </div>
+    </div>
+</body>
+</html>
